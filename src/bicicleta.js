@@ -114,3 +114,4 @@ function pegaIndiceBicicleta(id) {
 }
 
 module.exports = router;
+//teste2
