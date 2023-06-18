@@ -32,11 +32,6 @@ router.get('/:id([0-9]+)', function(req, res){
  * Insere uma bicicleta
  */
 router.post('/', function(req, res){
-    // if(!req.body.nome || !req.body.credito.toString().match(/^[0-9]+$/g)) {
-    //     res.status(400);
-    //     res.json({message: "Bad Request"});
-    //     return;
-    // }
 
     if (req.body.marca==null || req.body.modelo==null || req.body.ano==null){
         res.status(422);
@@ -68,11 +63,6 @@ router.post('/', function(req, res){
  * Atualiza os dados de um bicicleta
  */
 router.put('/:id', function(req, res){
-    // if(!req.body.nome || !req.body.credito.toString().match(/^[0-9]+$/g)){
-    //     res.status(400);
-    //     res.json({message: "Bad Request"});
-    //     return;
-    // }
 
     const indice = pegaIndiceBicicleta(req.params.id);
 

@@ -1,15 +1,16 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var bicicletas = require('./bicicleta.js');
+//router
+const bicicletas = require('./bicicleta.js');
 app.use('/bicicleta', bicicletas);
-var trancas = require('./tranca.js');
+const trancas = require('./tranca.js');
 app.use('/tranca', trancas);
-var totens = require('./totem.js');
+const totens = require('./totem.js');
 app.use('/totem', totens);
 
 app.listen(3000);

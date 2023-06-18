@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var trancas = [
+let trancas = [
 
 ];
 
@@ -16,7 +16,7 @@ router.get('/', function(req, res){
  * Retorna uma tranca, dada o seu ID
  */
 router.get('/:id([0-9]+)', function(req, res){
-    var indice = pegaIndiceTranca(req.params.id);
+    const indice = pegaIndiceTranca(req.params.id);
 
     if (indice == -1) {
         res.status(404);
@@ -31,13 +31,7 @@ router.get('/:id([0-9]+)', function(req, res){
  * Insere uma tranca
  */
 router.post('/', function(req, res){
-    // if(!req.body.nome || !req.body.credito.toString().match(/^[0-9]+$/g)) {
-    //     res.status(400);
-    //     res.json({message: "Bad Request"});
-    //     return;
-    // }
-
-    var newId = trancas.length+1;
+    const newId = trancas.length+1;
 
     if (req.body.marca!=null && req.body.modelo!=null && req.body.ano!=null){
         if (req.body.marca=="" || req.body.modelo=="" || req.body.ano==""){
@@ -64,20 +58,14 @@ router.post('/', function(req, res){
  * Atualiza os dados de uma tranca
  */
 router.put('/:id', function(req, res){
-    // if(!req.body.nome || !req.body.credito.toString().match(/^[0-9]+$/g)){
-    //     res.status(400);
-    //     res.json({message: "Bad Request"});
-    //     return;
-    // }
-
-    var indice = pegaIndiceTranca(req.params.id);
+    const indice = pegaIndiceTranca(req.params.id);
 
     if(indice == -1) {
         res.json({message: "Not found"});
         return;
     }
 
-    var trancaSelecionada = trancas[indice];
+    const trancaSelecionada = trancas[indice];
     trancaSelecionada.marca = req.body.marca;
     trancaSelecionada.modelo = req.body.modelo;
     trancaSelecionada.ano = req.body.ano;
@@ -92,7 +80,7 @@ router.put('/:id', function(req, res){
  * Remove uma tranca
  */
 router.delete('/:id', function(req, res) {
-    var indice = pegaIndiceTranca(req.params.id);
+    const indice = pegaIndiceTranca(req.params.id);
 
     if(indice == -1) {
         res.json({message: "Not found"});
@@ -108,9 +96,9 @@ router.delete('/:id', function(req, res) {
  * Retorna uma tranca, dado o seu ID
  */
 function pegaIndiceTranca(id) {
-    var len = tranca.length;
+    const len = tranca.length;
 
-    for (var i = 0; i < len; i++) {
+    for (let i = 0; i < len; i++) {
         if (trancas[i].id == id) {
             return i;
         }
