@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var bicicletas = [
+let bicicletas = [
 
 ];
 
@@ -16,7 +16,7 @@ router.get('/', function(req, res){
  * Retorna uma bicicleta, dada o seu ID
  */
 router.get('/:id([0-9]+)', function(req, res){
-    var indice = pegaIndiceBicicleta(req.params.id);
+    const indice = pegaIndiceBicicleta(req.params.id);
 
     if (indice == -1) {
         res.status(404);
@@ -48,7 +48,7 @@ router.post('/', function(req, res){
         res.json({message:"Algum campo não preenchido."})
         return;
     }
-    var newId = bicicletas.length+1;
+    const newId = bicicletas.length+1;
 
     bicicletas.push(
         {id: newId,
@@ -74,7 +74,7 @@ router.put('/:id', function(req, res){
     //     return;
     // }
 
-    var indice = pegaIndiceBicicleta(req.params.id);
+    const indice = pegaIndiceBicicleta(req.params.id);
 
     if(indice == -1) {
         res.status(404);
@@ -97,7 +97,7 @@ router.put('/:id', function(req, res){
         return;
     }
 
-    var bicicletaSelecionada = bicicletas[indice];
+    const bicicletaSelecionada = bicicletas[indice];
     bicicletaSelecionada.marca = req.body.marca;
     bicicletaSelecionada.modelo = req.body.modelo;
     bicicletaSelecionada.ano = req.body.ano;
@@ -112,7 +112,7 @@ router.put('/:id', function(req, res){
  * Remove uma bicicleta
  */
 router.delete('/:id', function(req, res) {
-    var indice = pegaIndiceBicicleta(req.params.id);
+    const indice = pegaIndiceBicicleta(req.params.id);
 
     if(indice == -1) {
         res.json({message: "Not found"});
@@ -128,9 +128,9 @@ router.delete('/:id', function(req, res) {
  * Retorna um bicicleta, dado o seu ID
  */
 function pegaIndiceBicicleta(id) {
-    var len = bicicletas.length;
+    const len = bicicletas.length;
 
-    for (var i = 0; i < len; i++) {
+    for (let i = 0; i < len; i++) {
         if (bicicletas[i].id == id) {
             return i;
         }
