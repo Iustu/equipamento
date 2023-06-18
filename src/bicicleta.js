@@ -5,7 +5,6 @@ var bicicletas = [
 
 ];
 
-
 /*
  * Retorna a lista de bicicletas
  */
@@ -13,22 +12,21 @@ router.get('/', function(req, res){
     res.json(bicicletas);
 });
 
-
 /*
  * Retorna uma bicicleta, dada o seu ID
  */
 router.get('/:id([0-9]+)', function(req, res){
-    var indice = pegaIndicebicicleta(req.params.id);
+    var indice = pegaIndiceBicicleta(req.params.id);
 
     if (indice == -1) {
         res.status(404);
-        res.json({message: "Not Found"});
+        res.json({codigo:404,message: "Não encontrado"});
         return;
     }
 
-    res.json(bicicletas[indice]);
+    res.status(200);
+    res.json({message: "Bicicleta encontrada",bicicleta:bicicletas[indice]});
 });
-
 
 /*
  * Insere uma bicicleta
@@ -40,19 +38,31 @@ router.post('/', function(req, res){
     //     return;
     // }
 
+    if (req.body.marca==null || req.body.modelo==null || req.body.ano==null){
+        res.status(422);
+        res.json({message:"Algum campo não enviado."})
+        return;
+    }
+    if (req.body.marca=="" || req.body.modelo=="" || req.body.ano==""){
+        res.status(422);
+        res.json({message:"Algum campo não preenchido."})
+        return;
+    }
     var newId = bicicletas.length+1;
 
-    bicicletas.push({
-        id: newId,
-        marca: req.body.marca,
-        modelo: req.body.modelo,
-        ano: req.body.ano,
-        status: req.body.status,
-    });
-
-    res.json({message: "A nova bicicleta foi criada.", location: "/bicicleta/" + newId});
+    bicicletas.push(
+        {id: newId,
+                marca: req.body.marca,
+                modelo: req.body.modelo,
+                ano: req.body.ano,
+                status: "nova",
+        });
+    res.json({id: newId,
+                marca: req.body.marca,
+                modelo: req.body.modelo,
+                ano: req.body.ano,
+                status: "nova"});
 });
-
 
 /*
  * Atualiza os dados de um bicicleta
@@ -67,7 +77,23 @@ router.put('/:id', function(req, res){
     var indice = pegaIndiceBicicleta(req.params.id);
 
     if(indice == -1) {
-        res.json({message: "Not found"});
+        res.status(404);
+        res.json({mensagem: "Not found"});
+        return;
+    }
+    if (req.body.marca==null || req.body.modelo==null || req.body.ano==null){
+        res.status(422);
+        res.json({message:"Algum campo não enviado."})
+        return;
+    }
+    if (req.body.marca=="" || req.body.modelo=="" || req.body.ano==""){
+        res.status(422);
+        res.json({codigo:422,mensagem:"Algum campo não preenchido."})
+        return;
+    }
+    if (!req.body.ano.isNumber()){
+        res.status(422);
+        res.json({codigo:422,mensagem:"Ano não numérico."})
         return;
     }
 
@@ -114,4 +140,3 @@ function pegaIndiceBicicleta(id) {
 }
 
 module.exports = router;
-//teste2
