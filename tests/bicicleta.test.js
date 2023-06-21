@@ -1,5 +1,6 @@
-const request = require("supertest")
-const baseURL = "http://localhost:3000/bicicleta"
+const request = require("supertest");
+const baseURL = "http://localhost:3000/bicicleta";
+const bicicleta = require("../src/classes/bicicleta");
 
 //testa get
 describe("GET/", () => {
@@ -21,9 +22,8 @@ describe("GET/", () => {
     it("should return 200", async () => {
         const response = await request(baseURL).get("/");
         expect(response.statusCode).toBe(200);
-        //expect(response.body.error).toBe(null);
     });
-    it("should return bicicletas", async () => {
+    it("should return an array", async () => {
         const response = await request(baseURL).get("/");
         expect(response.body.length >= 1 ).toBe(true);
     });
@@ -46,39 +46,78 @@ describe("GET/id", () => {
         const response = await request(baseURL).get("/");
         await request(baseURL).delete(`/${response.body.length}`)
     })
-    it("should return 200", async () => {
+    it("should return bicicleta/id and status 200", async () => {
         const responseTotal = await request(baseURL).get("/");
         const responseUnitaria = await request(baseURL).get(`/${responseTotal.body.length}`);
-        console.log("@@@@@@@",responseTotal.body);
-        console.log("@@@@@@@@@@@",responseUnitaria.body);
         expect(responseUnitaria.statusCode).toBe(200);
+        expect(responseUnitaria.body.message).toBe("Bicicleta encontrada");
+        expect(responseUnitaria.body.bicicleta).toStrictEqual(
+            {
+                id: responseTotal.body.length,
+                marca: "caloi",
+                modelo: "Caloteira",
+                ano: "2025",
+                status: "nova",
+            }
+        );
     });
-    it("should return bicicleta/id", async () => {
-        const response = await request(baseURL).get("/");
-        expect(response.body.length >= 1 ).toBe(true);
+    it("should return 404 and error", async () => {
+        const responseUnitaria = await request(baseURL).get('/0');
+        expect(responseUnitaria.statusCode).toBe(404);
+        expect(responseUnitaria.body.message).toBe("Não encontrado");
     });
 });
 
 //testa Post
-// describe("POST /", () => {
-//     const newBicicleta = {
-//         id: 2,
-//         marca: "caloi",
-//         modelo: "Caloteira",
-//         ano: "2025",
-//         status: "nova",
-//     }
-//     afterAll(async () => {
-//         await request(baseURL).delete(`/${newBicicleta.id}`)
-//     })
-//     it("should add an item to bicicletas array", async () => {
-//         const response = await request(baseURL).post("/").send(newBicicleta);
-//         const lastItem = response.body.data[response.body.data.length-1]
-//         expect(response.statusCode).toBe(201);
-//         expect(lastItem.item).toBe(newBicicleta["item"]);
-//         expect(lastItem.completed).toBe(newBicicleta["completed"]);
-//     });
-// });
+describe("POST /", () => {
+    afterAll(async () => {
+        const response = await request(baseURL).get("/")
+        await request(baseURL).delete(`/${response.body.length}`)
+    })
+    it("should return 200 and add an item to bicicletas array", async () => {
+        const newBicicleta = {
+            marca: "caloi",
+            modelo: "Caloteira",
+            ano: "2025",
+            status: "nova",
+        }
+        const response = await request(baseURL).post("/").send(newBicicleta);
+        const lastItem = response.body.bicicleta;
+        expect(response.statusCode).toBe(200);
+        expect(lastItem).toStrictEqual(
+            {
+                id: response.body.bicicleta.id,
+                marca: "caloi",
+                modelo: "Caloteira",
+                ano: "2025",
+                status: "nova",
+            }
+        );
+        expect(response.body.message).toBe("Dados cadastrados")
+    });
+    it("should return 422 because null field", async () => {
+        const newBicicleta = {
+            marca: "caloi",
+            modelo: "Caloteira",
+            ano: "2025",
+            status: "nova",
+        }
+        const response = await request(baseURL).post("/").send(newBicicleta);
+        const lastItem = response.body.bicicleta;
+        expect(response.statusCode).toBe(200);
+        expect(lastItem).toStrictEqual(
+            {
+                id: response.body.bicicleta.id,
+                marca: "caloi",
+                modelo: "Caloteira",
+                ano: "2025",
+                status: "nova",
+            }
+        );
+        expect(response.body.message).toBe("Dados cadastrados")
+    });
+
+});
 //
 // //testa Put
 // describe("Update one bicicleta", () => {

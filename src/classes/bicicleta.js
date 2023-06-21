@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+
 let bicicletas = [
 
 ];
@@ -33,15 +34,14 @@ router.get('/:id([0-9]+)', function(req, res){
  * Insere uma bicicleta
  */
 router.post('/', function(req, res){
-
     if (req.body.marca==null || req.body.modelo==null || req.body.ano==null){
         res.status(422);
-        res.json({message:"Algum campo não enviado."})
+        res.json({message:"Dados inválidos (Null)"})
         return;
     }
     if (req.body.marca=="" || req.body.modelo=="" || req.body.ano==""){
         res.status(422);
-        res.json({message:"Algum campo não preenchido."})
+        res.json({message:"Dados inválidos (Empty"})
         return;
     }
     const newId = bicicletas.length+1;
@@ -53,18 +53,21 @@ router.post('/', function(req, res){
                 ano: req.body.ano,
                 status: "nova",
         });
-    res.json({id: newId,
-                marca: req.body.marca,
-                modelo: req.body.modelo,
-                ano: req.body.ano,
-                status: "nova"});
+
+    res.status(200);
+    res.json({message:"Dados cadastrados",
+                bicicleta:{
+                    id: newId,
+                    marca: req.body.marca,
+                    modelo: req.body.modelo,
+                    ano: req.body.ano,
+                    status: "nova"}});
 });
 
 /*
  * Atualiza os dados de um bicicleta
  */
 router.put('/:id', function(req, res){
-
     const indice = pegaIndiceBicicleta(req.params.id);
 
     if(indice == -1) {
