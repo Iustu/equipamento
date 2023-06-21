@@ -1,33 +1,63 @@
-// const request = require("supertest")
-// request("https://icanhazdadjoke.com")
-// const baseURL = "http://localhost:3000/bicicleta"
-//
-// //testa get
-// describe("GET ", () => {
-//     const newBicicleta = {
-//         id:"1",
-//         marca: "caloi",
-//         modelo: "Caloteira",
-//         ano: "2025",
-//         status: "nova",
-//     }
-//     beforeAll(async () => {
-//         // set up the bicicleta
-//         await request(baseURL).post("/").send(newBicicleta);
-//     })
-//     afterAll(async () => {
-//         await request(baseURL).delete(`/${newBicicleta.id}`)
-//     })
-//     it("should return 200", async () => {
-//         const response = await request(baseURL).get("/");
-//         expect(response.statusCode).toBe(200);
-//         //expect(response.body.error).toBe(null);
-//     });
-//     it("should return bicicletas", async () => {
-//         const response = await request(baseURL).get("/");
-//         expect(response.body.data.length >= 1).toBe(true);
-//     });
-// });
+const request = require("supertest")
+const baseURL = "http://localhost:3000/bicicleta"
+
+//testa get
+describe("GET/", () => {
+
+    const newBicicleta = {
+        marca: "caloi",
+        modelo: "Caloteira",
+        ano: "2025",
+        status: "nova",
+    }
+    beforeAll(async () => {
+        // set up the bicicleta
+        await request(baseURL).post("/").send(newBicicleta);
+    })
+    afterAll(async () => {
+        const response = await request(baseURL).get("/");
+        await request(baseURL).delete(`/${response.body.length}`)
+    })
+    it("should return 200", async () => {
+        const response = await request(baseURL).get("/");
+        expect(response.statusCode).toBe(200);
+        //expect(response.body.error).toBe(null);
+    });
+    it("should return bicicletas", async () => {
+        const response = await request(baseURL).get("/");
+        expect(response.body.length >= 1 ).toBe(true);
+    });
+});
+
+//testa get/id
+describe("GET/id", () => {
+
+    const newBicicleta = {
+        marca: "caloi",
+        modelo: "Caloteira",
+        ano: "2025",
+        status: "nova",
+    }
+    beforeAll(async () => {
+        // set up the bicicleta
+        await request(baseURL).post("/").send(newBicicleta);
+    })
+    afterAll(async () => {
+        const response = await request(baseURL).get("/");
+        await request(baseURL).delete(`/${response.body.length}`)
+    })
+    it("should return 200", async () => {
+        const responseTotal = await request(baseURL).get("/");
+        const responseUnitaria = await request(baseURL).get(`/${responseTotal.body.length}`);
+        console.log("@@@@@@@",responseTotal.body);
+        console.log("@@@@@@@@@@@",responseUnitaria.body);
+        expect(responseUnitaria.statusCode).toBe(200);
+    });
+    it("should return bicicleta/id", async () => {
+        const response = await request(baseURL).get("/");
+        expect(response.body.length >= 1 ).toBe(true);
+    });
+});
 
 //testa Post
 // describe("POST /", () => {

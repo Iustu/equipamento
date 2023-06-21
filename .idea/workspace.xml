@@ -7,7 +7,11 @@
     <list default="true" id="8a4b7ab1-fe31-47f9-931b-db6da5494ce9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/todo.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/todo.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/todo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/bicicleta.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/bicicleta.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/todo.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/totem.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/tranca.test.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +62,8 @@
       <workItem from="1687136293685" duration="17000" />
       <workItem from="1687136529846" duration="1824000" />
       <workItem from="1687267877842" duration="6944000" />
-      <workItem from="1687307653667" duration="3708000" />
+      <workItem from="1687307653667" duration="7654000" />
+      <workItem from="1687354637663" duration="592000" />
     </task>
     <servers />
   </component>
