@@ -72,7 +72,7 @@ router.put('/:id', function(req, res){
 
     if(indice == -1) {
         res.status(404);
-        res.json({mensagem: "Not found"});
+        res.json({message: "Não encontrado"});
         return;
     }
     if (req.body.marca==null || req.body.modelo==null || req.body.ano==null){
@@ -104,12 +104,15 @@ router.delete('/:id', function(req, res) {
     const indice = pegaIndiceBicicleta(req.params.id);
 
     if(indice == -1) {
-        res.json({message: "Not found"});
+        res.status(404)
+        res.json({message: "Não encontrado"});
         return;
     }
 
+
     bicicletas.splice(indice, 1);
-    res.send({message: "Bicicleta ID " + req.params.id + " removido."});
+    res.status(200);
+    res.send({message: "Dados removidos"});
 });
 
 
