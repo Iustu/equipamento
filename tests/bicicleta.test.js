@@ -4,7 +4,6 @@ const bicicleta = require("../src/classes/bicicleta");
 
 //testa get
 describe("GET/", () => {
-
     const newBicicleta = {
         marca: "caloi",
         modelo: "Caloteira",
@@ -17,7 +16,7 @@ describe("GET/", () => {
     })
     afterAll(async () => {
         const response = await request(baseURL).get("/");
-        await request(baseURL).delete(`/${response.body.length}`)
+        await request(baseURL).delete(`/${response.body.length}`);
     })
     it("should return 200", async () => {
         const response = await request(baseURL).get("/");
@@ -31,7 +30,6 @@ describe("GET/", () => {
 
 //testa get/id
 describe("GET/id", () => {
-
     const newBicicleta = {
         marca: "caloi",
         modelo: "Caloteira",
@@ -44,7 +42,7 @@ describe("GET/id", () => {
     })
     afterAll(async () => {
         const response = await request(baseURL).get("/");
-        await request(baseURL).delete(`/${response.body.length}`)
+        await request(baseURL).delete(`/${response.body.length}`);
     })
     it("should return bicicleta/id and status 200", async () => {
         const responseTotal = await request(baseURL).get("/");
@@ -71,8 +69,8 @@ describe("GET/id", () => {
 //testa Post
 describe("POST /", () => {
     afterAll(async () => {
-        const response = await request(baseURL).get("/")
-        await request(baseURL).delete(`/${response.body.length}`)
+        const response = await request(baseURL).get("/");
+        await request(baseURL).delete(`/${response.body.length}`);
     })
     it("should return 200 and add an item to bicicletas array", async () => {
         const newBicicleta = {
@@ -97,51 +95,85 @@ describe("POST /", () => {
     });
     it("should return 422 because null field", async () => {
         const newBicicleta = {
-            marca: "caloi",
             modelo: "Caloteira",
             ano: "2025",
             status: "nova",
         }
         const response = await request(baseURL).post("/").send(newBicicleta);
-        const lastItem = response.body.bicicleta;
-        expect(response.statusCode).toBe(200);
-        expect(lastItem).toStrictEqual(
+        expect(response.statusCode).toBe(422);
+        expect(response.body.message).toBe("Dados inválidos (Null)");
+    });
+    it("should return 422 because empty field", async () => {
+        const newBicicleta = {
+            marca: "",
+            modelo: "Caloteira",
+            ano: "2025",
+            status: "nova",
+        }
+        const response = await request(baseURL).post("/").send(newBicicleta);
+        expect(response.statusCode).toBe(422);
+        expect(response.body.message).toBe("Dados inválidos (Empty)");
+    });
+});
+
+//testa Put
+describe("PUT /id", () => {
+    const newBicicletaPost = {
+        marca: "caloi",
+        modelo: "Caloteira",
+        ano: "2025",
+        status: "nova",
+    };
+    let responsePost;
+    beforeAll(async () => {
+        responsePost = await request(baseURL).post("/").send(newBicicletaPost);
+    })
+    afterAll(async () => {
+        await request(baseURL).delete(`/${responsePost.body.bicicleta.id}`);
+    })
+    it("should update item if it exists and return 200", async () => {
+        const newBicicletaPut = {
+            marca: "MONARK",
+            modelo: "LIBERDADE DE EXPRESSAO",
+            ano: "2025",
+            status: "nova",
+        };
+        const responsePut = await request(baseURL).put(`/${responsePost.body.bicicleta.id}`).send(newBicicletaPut);
+        expect(responsePut.statusCode).toBe(200);
+        expect(responsePut.body.bicicleta).toStrictEqual(
             {
-                id: response.body.bicicleta.id,
-                marca: "caloi",
-                modelo: "Caloteira",
+                id: responsePost.body.bicicleta.id,
+                marca: "MONARK",
+                modelo: "LIBERDADE DE EXPRESSAO",
                 ano: "2025",
                 status: "nova",
             }
         );
-        expect(response.body.message).toBe("Dados cadastrados")
+        expect(responsePut.body.message).toBe("Dados atualizados");
+    });
+    it("should return 422 because null field", async () => {
+        const newBicicleta = {
+            modelo: "Caloteira",
+            ano: "2025",
+            status: "nova",
+        }
+        const response = await request(baseURL).post("/").send(newBicicleta);
+        expect(response.statusCode).toBe(422);
+        expect(response.body.message).toBe("Dados inválidos (Null)");
+    });
+    it("should return 422 because empty field", async () => {
+        const newBicicleta = {
+            marca: "",
+            modelo: "Caloteira",
+            ano: "2025",
+            status: "nova",
+        }
+        const response = await request(baseURL).post("/").send(newBicicleta);
+        expect(response.statusCode).toBe(422);
+        expect(response.body.message).toBe("Dados inválidos (Empty)");
     });
 
 });
-//
-// //testa Put
-// describe("Update one bicicleta", () => {
-//     const newBicicleta = {
-//         id: 2,
-//         marca: "caloi",
-//         modelo: "Caloteira",
-//         ano: "2025",
-//         status: "nova",
-//     }
-//     beforeAll(async () => {
-//         await request(baseURL).post("/").send(newBicicleta);
-//     })
-//     afterAll(async () => {
-//         await request(baseURL).delete(`/${newBicicleta.id}`)
-//     })
-//     it("should update item if it exists", async () => {
-//         const response = await request(baseURL).put(`/${newBicicleta.id}`).send({
-//             completed: true,
-//         });
-//         expect(response.statusCode).toBe(201);
-//         expect(response.body.data.completed).toBe(true);
-//     });
-// });
 //
 // //testa Delete
 // describe("Delete one bicicleta", () => {

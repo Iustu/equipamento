@@ -41,7 +41,7 @@ router.post('/', function(req, res){
     }
     if (req.body.marca=="" || req.body.modelo=="" || req.body.ano==""){
         res.status(422);
-        res.json({message:"Dados inválidos (Empty"})
+        res.json({message:"Dados inválidos (Empty)"})
         return;
     }
     const newId = bicicletas.length+1;
@@ -77,17 +77,12 @@ router.put('/:id', function(req, res){
     }
     if (req.body.marca==null || req.body.modelo==null || req.body.ano==null){
         res.status(422);
-        res.json({message:"Algum campo não enviado."})
+        res.json({message:"Dados inválidos (Null)"})
         return;
     }
     if (req.body.marca=="" || req.body.modelo=="" || req.body.ano==""){
         res.status(422);
-        res.json({codigo:422,mensagem:"Algum campo não preenchido."})
-        return;
-    }
-    if (!req.body.ano.isNumber()){
-        res.status(422);
-        res.json({codigo:422,mensagem:"Ano não numérico."})
+        res.json({message:"Dados inválidos (Empty)"})
         return;
     }
 
@@ -97,8 +92,8 @@ router.put('/:id', function(req, res){
     bicicletaSelecionada.ano = req.body.ano;
     bicicletaSelecionada.status = req.body.status;
 
-    res.json({message: "Bicicleta ID " + req.params.id + " atualizada.",
-        location: "/bicicleta/" + req.params.id});
+    res.status(200);
+    res.json({message:"Dados atualizados",bicicleta:bicicletaSelecionada});
 });
 
 
