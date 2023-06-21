@@ -1,7 +1,7 @@
 {
-  "name": "external-transactions",
+  "name": "EQUIPAMENTOS",
   "version": "1.0.0",
-  "description": "",
+  "description": "coisas de equipar",
   "main": "src/index.js",
   "dependencies": {
     "body-parser": "^1.20.2",
