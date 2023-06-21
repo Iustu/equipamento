@@ -12,5 +12,7 @@ const trancas = require('./tranca.js');
 app.use('/tranca', trancas);
 const totens = require('./totem.js');
 app.use('/totem', totens);
+const todos = require('./totem.js');
+app.use('/todos', todos);
 
 app.listen(3000);

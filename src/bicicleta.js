@@ -9,6 +9,7 @@ let bicicletas = [
  * Retorna a lista de bicicletas
  */
 router.get('/', function(req, res){
+    res.status(200);
     res.json(bicicletas);
 });
 
