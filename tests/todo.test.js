@@ -7,13 +7,13 @@ describe("GET /todos", () => {
         item: "Drink water",
         completed: false,
     }
-    // beforeAll(async () => {
-    //     // set up the todo
-    //     await request(baseURL).post("/todo").send(newTodo);
-    // })
-    // afterAll(async () => {
-    //     await request(baseURL).delete(`/todo/${newTodo.id}`)
-    // })
+    beforeAll(async () => {
+        // set up the todo
+        await request(baseURL).post("/todo").send(newTodo);
+    })
+    afterAll(async () => {
+        await request(baseURL).delete(`/todo/${newTodo.id}`)
+    })
     it("should return 200", async () => {
         const response = await request(baseURL).get("/todos");
         expect(response.statusCode).toBe(200);
