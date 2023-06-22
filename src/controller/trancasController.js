@@ -1,9 +1,9 @@
-let tracas = [
+let trancas = [
 
 ];
 
 const getTrancas = async (request, reply) => {
-    return reply.status(200).send(tracas);
+    return reply.status(200).send(trancas);
 };
 
 const getTrancaById = async(request, reply) => {
@@ -17,7 +17,7 @@ const getTrancaById = async(request, reply) => {
         }
 
         reply.status(200);
-        reply.send({message: "Tranca encontrada",tranca:tracas[indice]});
+        reply.send({message: "Tranca encontrada",tranca:trancas[indice]});
 
 
     } catch (error) {
@@ -44,9 +44,9 @@ const criarTranca = async (request, reply) => {
             return;
         }
 
-        const newId = tracas.length+1;
+        const newId = trancas.length+1;
 
-        tracas.push(
+        trancas.push(
             {
                 id: newId,
                 localizacao: request.body.localizacao,
@@ -95,7 +95,7 @@ const atualizarTranca = async(request, reply) => {
             return;
         }
 
-        const trancaSelecionada = tracas[indice];
+        const trancaSelecionada = trancas[indice];
         trancaSelecionada.localizacao = request.body.localizacao;
         trancaSelecionada.modelo = request.body.modelo;
         trancaSelecionada.anoFabricacao = request.body.Fabricacao;
@@ -120,7 +120,7 @@ const removerTrancaById = async(request, reply) => {
             return;
         }
 
-        tracas.splice(indice, 1);
+        trancas.splice(indice, 1);
         reply.status(200);
         reply.send({message: "Dados removidos"});
     }
@@ -132,10 +132,10 @@ const removerTrancaById = async(request, reply) => {
 
 function pegaIndiceTranca(id) {
 
-    const len = tracas.length;
+    const len = trancas.length;
 
     for (let i = 0; i < len; i++) {
-        if (tracas[i].id == id) {
+        if (trancas[i].id == id) {
             return i;
         }
     }
