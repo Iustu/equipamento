@@ -398,7 +398,6 @@ describe("Delete /id", ()=>{
             method: 'GET',
             url: `/bicicleta/${parsedPost.bicicleta.id}`
         });
-        const parsedResponse3 = JSON.parse(response1.body);
 
         expect(response3.statusCode).toBe(404);
 
