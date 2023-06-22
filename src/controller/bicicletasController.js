@@ -54,7 +54,7 @@ const criarBicicleta = async (request, reply) => {
                 ano: request.body.ano,
                 status: "nova",
             });
-
+//
         const json = {
             message:"Dados cadastrados",
             bicicleta:{
