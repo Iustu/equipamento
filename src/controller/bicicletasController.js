@@ -54,24 +54,25 @@ const criarBicicleta = async (request, reply) => {
                 status: "nova",
             });
 
-        reply.status(200);
-        reply.send({message:"Dados cadastrados",
+        const json = {
+            message:"Dados cadastrados",
             bicicleta:{
                 id: newId,
                 marca: request.body.marca,
                 modelo: request.body.modelo,
                 ano: request.body.ano,
-                status: "nova"}});
+                status: "nova"}
+        }
+        reply.status(200);
+        reply.send(json);
     }
     catch (error) {
         console.error(error);
-        reply.status(404).send('Requisição mal formada');
     }
 };
 
 const atualizarBicicleta = async(request, reply) => {
     try {
-        console.log("@@@@@@@@@",request.params)
         const indice = pegaIndiceBicicleta(request.params.id);
 
         if(indice == -1) {

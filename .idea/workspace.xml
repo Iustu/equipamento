@@ -5,24 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a4b7ab1-fe31-47f9-931b-db6da5494ce9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/ciclistasController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/funcionariosController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/ciclistasRoute.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/funcionariosRoute.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/helloWorldRoute.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sum.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/logUtils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Funcionario.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/ciclistas.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/index.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/sum.spec.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backup/bicicleta.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backup/bicicleta.js" beforeDir="false" afterPath="$PROJECT_DIR$/backup/bicicleta.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backup/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/backup/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backup/sum.js" beforeDir="false" afterPath="$PROJECT_DIR$/backup/sum.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backup/sum.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/backup/sum.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backup/totem.js" beforeDir="false" afterPath="$PROJECT_DIR$/backup/totem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backup/tranca.js" beforeDir="false" afterPath="$PROJECT_DIR$/backup/tranca.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/bicicletasController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/bicicletasController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Funcionario.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Funcionario.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/bicicleta.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/bicicleta.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/ciclistas.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ciclistas.test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,11 +52,12 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/UNIRIO/6 periodo/PM/equipamento/tests",
+    "last_opened_file_path": "E:/UNIRIO/6 periodo/PM/equipamento/src/backup",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "E:/UNIRIO/6 periodo/PM/equipamento/node_modules/jest",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
@@ -67,12 +65,33 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\UNIRIO\6 periodo\PM\equipamento\src\backup" />
       <recent name="D:\UNIRIO\6 periodo\PM\equipamento\tests" />
       <recent name="D:\UNIRIO\6 periodo\PM\equipamento\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\UNIRIO\6 periodo\PM\equipamento" />
       <recent name="E:\UNIRIO\6 periodo\PM\equipamento\src\classes" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="getBicicletas route test" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/tests/bicicleta.test.js" />
+      <test-names>
+        <test-name value="getBicicletas route test" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Jest.getBicicletas route test" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -88,6 +107,7 @@
       <workItem from="1687307653667" duration="7654000" />
       <workItem from="1687354637663" duration="14066000" />
       <workItem from="1687388773020" duration="3853000" />
+      <workItem from="1687426727061" duration="10947000" />
     </task>
     <servers />
   </component>
