@@ -5,9 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a4b7ab1-fe31-47f9-931b-db6da5494ce9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/ciclistasController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/funcionariosController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/ciclistasRoute.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/funcionariosRoute.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/helloWorldRoute.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sum.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/logUtils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Funcionario.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/ciclistas.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/index.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/sum.spec.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/bicicleta.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/bicicleta.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/bicicleta.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/bicicleta.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,8 +52,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/UNIRIO/6 periodo/PM/equipamento/tests",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -49,6 +66,10 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\UNIRIO\6 periodo\PM\equipamento\tests" />
+      <recent name="D:\UNIRIO\6 periodo\PM\equipamento\src" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\UNIRIO\6 periodo\PM\equipamento\src\classes" />
     </key>
@@ -66,6 +87,7 @@
       <workItem from="1687267877842" duration="6944000" />
       <workItem from="1687307653667" duration="7654000" />
       <workItem from="1687354637663" duration="14066000" />
+      <workItem from="1687388773020" duration="3853000" />
     </task>
     <servers />
   </component>

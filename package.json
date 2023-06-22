@@ -2,28 +2,23 @@
   "name": "EQUIPAMENTOS",
   "version": "1.0.0",
   "description": "coisas de equipar",
-  "main": "src/index.js",
-  "dependencies": {
-    "body-parser": "^1.20.2",
-    "express": "^4.18.2",
-    "jest": "^29.5.0",
-    "nodemon": "^2.0.22",
-    "supertest": "^6.3.3"
-  },
+  "main": "src/server.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
     "test": "jest --coverage"
   },
-  "jest": {
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "./src/classes/**"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "lines": 90
-      }
-    }
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "fastify": "^4.17.0",
+    "jest": "^29.5.0",
+    "nodemon": "^2.0.22",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }
