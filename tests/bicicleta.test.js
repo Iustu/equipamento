@@ -50,7 +50,7 @@ describe('get/', () => {
 
         expect(JSON.parse(response.body).length >= 1 ).toBe(true);
 
-        const deletE = await app.inject({
+        await app.inject({
             method:'delete',
             url: `bicicleta/${parsedPost.bicicleta.id}`,
         });
@@ -90,7 +90,7 @@ describe('get/id', () => {
             }
         );
 
-        const deletE = await app.inject({
+        await app.inject({
             method:'delete',
             url: `bicicleta/${parsedPost.bicicleta.id}`,
         })
@@ -156,16 +156,11 @@ describe('get/id', () => {
          });
          const parsedResponse3 = JSON.parse(response3.body);
 
-         // console.log(parsedPost);
-         // console.log(parsedResponse3);
-         // console.log(parsedResponse2);
-         // console.log(parsedResponse1);
-
          expect(post.statusCode).toBe(200);
          expect(parsedResponse2.length>parsedResponse1.length).toBe(true);
          expect(parsedResponse3.bicicleta).toStrictEqual(parsedPost.bicicleta);
 
-         const deletE = await app.inject({
+         await app.inject({
              method:'delete',
              url: `bicicleta/${parsedPost.bicicleta.id}`,
          })
@@ -248,16 +243,11 @@ describe("PUT /id", () => {
         });
         const parsedResponse = JSON.parse(response.body);
 
-        // console.log(post.body);
-        // console.log(put.body);
-        // console.log(response.body);
-        // console.log(response1.body);
-
         expect(put.statusCode).toBe(200);
         expect(parsedResponse1.bicicleta != parsedResponse.bicicleta).toBe(true);
         expect(parsedResponse.bicicleta).toStrictEqual(parsedPut.bicicleta);
 
-        const deletE = await app.inject({
+        await app.inject({
         method:'delete',
         url: `bicicleta/${parsedPost.bicicleta.id}`,
         })
@@ -290,7 +280,7 @@ describe("PUT /id", () => {
 
         expect(put.statusCode).toBe(422);
         expect(parsedPut.message).toBe("Dados inválidos (Null)");
-        const deletE = await app.inject({
+        await app.inject({
             method:'delete',
             url: `bicicleta/${parsedPost.bicicleta.id}`,
         })
@@ -325,7 +315,7 @@ describe("PUT /id", () => {
 
         expect(put.statusCode).toBe(422);
         expect(parsedPut.message).toBe("Dados inválidos (Empty)");
-        const deletE = await app.inject({
+        await app.inject({
             method:'delete',
             url: `bicicleta/${parsedPost.bicicleta.id}`,
         })
@@ -358,7 +348,7 @@ describe("PUT /id", () => {
 
         expect(put.statusCode).toBe(404);
         expect(parsedPut.message).toBe("Não encontrado");
-        const deletE = await app.inject({
+        await app.inject({
             method:'delete',
             url: `bicicleta/${parsedPost.bicicleta.id}`,
         })
@@ -367,7 +357,7 @@ describe("PUT /id", () => {
 });
 
 
-// //testa Delete
+//testa Delete
 describe("Delete /id", ()=>{
     test("Should return 200 and remove from array",async ()=>{
         const app = build();
@@ -401,11 +391,6 @@ describe("Delete /id", ()=>{
         });
         const parsedResponse2 = JSON.parse(response2.body);
 
-        // console.log(parsedPost);
-        // console.log(deletE.body);
-        // console.log(parsedResponse2);
-        // console.log(parsedResponse1);
-
         expect(deletE.statusCode).toBe(200);
         expect(parsedResponse2.length<parsedResponse1.length).toBe(true);
 
@@ -429,32 +414,3 @@ describe("Delete /id", ()=>{
 
     });
 });
-// describe("Delete one bicicleta", () => {
-//     const newBicicleta = {
-//         marca: "caloi",
-//         modelo: "Caloteira",
-//         ano: "2025",
-//         status: "nova",
-//     }
-//     let primeiroMomento;
-//     let post;
-//     beforeAll(async () => {
-//         post = await request(baseURL).post("/").send(newBicicleta);
-//         primeiroMomento = await request(baseURL).get("/");
-//     })
-//     it("should delete one item and return 200", async () => {
-//         const response = await request(baseURL).delete(`/${post.body.bicicleta.id}`);
-//         expect(response.statusCode).toBe(200);
-//         const bicicleta = await request(baseURL).get(`/${post.body.bicicleta.id}`);
-//         expect(bicicleta.statusCode).toBe(404);
-//         const segundoMomento = await request(baseURL).get("/");
-//         expect(segundoMomento.body.length<primeiroMomento.body.length).toBe(true);
-//     });
-//     it("should not delete and return 404", async () => {
-//         await request(baseURL).post("/").send(newBicicleta);
-//         const response = await request(baseURL).delete("/0");
-//         expect(response.statusCode).toBe(404);
-//         const segundoMomento = await request(baseURL).get("/");
-//         expect(segundoMomento.body.length == primeiroMomento.body.length).toBe(true);
-//     });
-// });
