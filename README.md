@@ -10,11 +10,3 @@ npm start
 npm test
 ``
 
-
-#### Endpoint do Hello World:  
-###### Método ``GET``
-``
-localhost:3000/helloWorld
-``   
-
-
