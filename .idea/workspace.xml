@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a4b7ab1-fe31-47f9-931b-db6da5494ce9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backup/bicicleta.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backup/bicicleta.js" beforeDir="false" afterPath="$PROJECT_DIR$/backup/bicicleta.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backup/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/backup/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backup/sum.js" beforeDir="false" afterPath="$PROJECT_DIR$/backup/sum.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backup/sum.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/backup/sum.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backup/totem.js" beforeDir="false" afterPath="$PROJECT_DIR$/backup/totem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backup/tranca.js" beforeDir="false" afterPath="$PROJECT_DIR$/backup/tranca.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/bicicletasController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/bicicletasController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Funcionario.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Funcionario.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/bicicleta.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/bicicleta.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/ciclistas.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ciclistas.test.js" afterDir="false" />
-    </list>
+    <list default="true" id="8a4b7ab1-fe31-47f9-931b-db6da5494ce9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -107,7 +91,7 @@
       <workItem from="1687307653667" duration="7654000" />
       <workItem from="1687354637663" duration="14066000" />
       <workItem from="1687388773020" duration="3853000" />
-      <workItem from="1687426727061" duration="10947000" />
+      <workItem from="1687426727061" duration="11488000" />
     </task>
     <servers />
   </component>
