@@ -47,7 +47,8 @@ const criarBicicleta = async (request, reply) => {
         const newId = bicicletas.length+1;
 
         bicicletas.push(
-            {id: newId,
+            {
+                id: newId,
                 marca: request.body.marca,
                 modelo: request.body.modelo,
                 ano: request.body.ano,

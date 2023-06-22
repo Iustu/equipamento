@@ -9,7 +9,7 @@ const build = (opts = {}) => {
     const app = fastify(opts);
 
     app.register(require('./routes/bicicletasRoute'));
-    // app.register(require('./routes/trancasRoute'));
+    app.register(require('./routes/trancasRoute'));
     // app.register(require('./routes/totensRoute'));
 
     return app;
