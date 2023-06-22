@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a4b7ab1-fe31-47f9-931b-db6da5494ce9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/controller/bicicletasController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/bicicletasController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/bicicleta.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/bicicleta.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/sum.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/sum.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/totem.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/tranca.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +101,7 @@
       <workItem from="1687307653667" duration="7654000" />
       <workItem from="1687354637663" duration="14066000" />
       <workItem from="1687388773020" duration="3853000" />
-      <workItem from="1687426727061" duration="19538000" />
+      <workItem from="1687426727061" duration="20145000" />
     </task>
     <servers />
   </component>
