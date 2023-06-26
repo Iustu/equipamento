@@ -37,6 +37,7 @@ describe('get/', () => {
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
                 status: "nova",
+                numero: "1234"
             }
         });
 
@@ -70,6 +71,7 @@ describe('get/id', () => {
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
                 status: "nova",
+                numero: "1234"
             }
         })
         const parsedPost = JSON.parse(post.body);
@@ -87,6 +89,7 @@ describe('get/id', () => {
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
                 status: "nova",
+                numero: "1234"
             }
         );
 
@@ -140,6 +143,7 @@ describe("POST /", () => {
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
                 status: "nova",
+                numero: "1234"
             }
         })
         const parsedPost = JSON.parse(post.body);
@@ -175,6 +179,7 @@ describe("POST /", () => {
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
                 status: "nova",
+                numero: "1234"
             }
         })
         const parsedPost = JSON.parse(post.body);
@@ -194,6 +199,7 @@ describe("POST /", () => {
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
                 status: "nova",
+                numero: "1234"
             }
         })
         const parsedPost = JSON.parse(post.body);
@@ -205,7 +211,7 @@ describe("POST /", () => {
 
 //teste put
 describe("PUT /id", () => {
-    test('Should return 200 and delete the data correctly', async () => {
+    test('Should return 200 and update the data correctly', async () => {
         const app = build();
 
         const post = await app.inject({
@@ -216,6 +222,7 @@ describe("PUT /id", () => {
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
                 status: "nova",
+                numero: "1234"
             }
         })
         const parsedPost = JSON.parse(post.body);
@@ -234,6 +241,7 @@ describe("PUT /id", () => {
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
                 status: "velha",
+                numero: "1234"
             }
         })
         const parsedPut = JSON.parse(put.body);
@@ -264,6 +272,7 @@ describe("PUT /id", () => {
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
                 status: "nova",
+                numero: "1234"
             }
         })
         const parsedPost = JSON.parse(post.body);
@@ -275,6 +284,7 @@ describe("PUT /id", () => {
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
                 status: "nova",
+                numero: "1234"
             }
         })
         const parsedPut = JSON.parse(put.body);
@@ -298,6 +308,7 @@ describe("PUT /id", () => {
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
                 status: "nova",
+                numero: "1234"
             }
         })
         const parsedPost = JSON.parse(post.body);
@@ -310,6 +321,7 @@ describe("PUT /id", () => {
                 modelo: "Caloteira",
                 anoFabricacao: "2025",
                 status: "nova",
+                numero: "1234"
             }
         })
         const parsedPut = JSON.parse(put.body);
@@ -332,6 +344,7 @@ describe("PUT /id", () => {
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
                 status: "nova",
+                numero: "1234"
             }
         })
         const parsedPost = JSON.parse(post.body);
@@ -344,6 +357,7 @@ describe("PUT /id", () => {
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
                 status: "nova",
+                numero: "1234"
             }
         })
         const parsedPut = JSON.parse(put.body);
@@ -372,6 +386,7 @@ describe("Delete /id", ()=>{
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
                 status: "nova",
+                numero: "1234"
             }
         })
         const parsedPost = JSON.parse(post.body);

@@ -9,7 +9,7 @@ const getBicicletas = async (request, reply) => {
 
 const getBicicletaById = async(request, reply) => {
     try {
-        const indice = pegaIndiceBicicleta(request.params.id);
+        const indice = pegaIndiceBicicletaId(request.params.id);
 
         if (indice == -1) {
             reply.status(404);
@@ -32,13 +32,13 @@ const getBicicletaById = async(request, reply) => {
 
 const criarBicicleta = async (request, reply) => {
     try {
-        const passaN = passaNullBicicleta(request.body.marca, request.body.modelo, request.body.ano);
+        const passaN = passaNullBicicleta(request.body.marca, request.body.modelo, request.body.ano,request.body.numero);
         if (!passaN){
             reply.status(422);
             reply.send({message:"Dados inválidos (Null)"})
             return;
         }
-        const passaE = passaEmptyBicicleta(request.body.marca, request.body.modelo, request.body.ano);
+        const passaE = passaEmptyBicicleta(request.body.marca, request.body.modelo, request.body.ano,request.body.numero);
         if (!passaE){
             reply.status(422);
             reply.send({message:"Dados inválidos (Empty)"})
@@ -52,6 +52,7 @@ const criarBicicleta = async (request, reply) => {
                 id: newId,
                 marca: request.body.marca,
                 modelo: request.body.modelo,
+                numero: request.body.numero,
                 ano: request.body.ano,
                 status: "nova",
             });
@@ -62,6 +63,7 @@ const criarBicicleta = async (request, reply) => {
                 id: newId,
                 marca: request.body.marca,
                 modelo: request.body.modelo,
+                numero: request.body.numero,
                 ano: request.body.ano,
                 status: "nova"}
         }
@@ -75,20 +77,20 @@ const criarBicicleta = async (request, reply) => {
 
 const atualizarBicicleta = async(request, reply) => {
     try {
-        const indice = pegaIndiceBicicleta(request.params.id);
+        const indice = pegaIndiceBicicletaId(request.params.id);
 
         if(indice == -1) {
             reply.status(404);
             reply.send({message: "Não encontrado"});
             return;
         }
-        const passaN = passaNullBicicleta(request.body.marca, request.body.modelo, request.body.ano);
+        const passaN = passaNullBicicleta(request.body.marca, request.body.modelo, request.body.ano,request.body.numero);
         if (!passaN){
             reply.status(422);
             reply.send({message:"Dados inválidos (Null)"});
             return;
         }
-        const passaE = passaEmptyBicicleta(request.body.marca, request.body.modelo, request.body.ano);
+        const passaE = passaEmptyBicicleta(request.body.marca, request.body.modelo, request.body.ano,request.body.numero);
         if (!passaE){
             reply.status(422);
             reply.send({message:"Dados inválidos (Empty)"});
@@ -112,7 +114,7 @@ const atualizarBicicleta = async(request, reply) => {
 
 const removerBicicletaById = async(request, reply) => {
     try {
-        const indice = pegaIndiceBicicleta(request.params.id);
+        const indice = pegaIndiceBicicletaId(request.params.id);
 
         if(indice == -1) {
             reply.status(404)
@@ -130,8 +132,7 @@ const removerBicicletaById = async(request, reply) => {
     }
 };
 
-function pegaIndiceBicicleta(id) {
-
+function pegaIndiceBicicletaId(id) {
     const len = bicicletas.length;
 
     for (let i = 0; i < len; i++) {
@@ -141,8 +142,16 @@ function pegaIndiceBicicleta(id) {
     }
     return -1;
 }
+function pegaIndiceBicicletaNumero(numero) {
+    const len = bicicletas.length;
 
-
+    for (let i = 0; i < len; i++) {
+        if (bicicletas[i].numero == numero) {
+            return i;
+        }
+    }
+    return -1;
+}
 
 module.exports = {
     getBicicletas,
@@ -150,4 +159,6 @@ module.exports = {
     criarBicicleta,
     atualizarBicicleta,
     removerBicicletaById,
+    pegaIndiceBicicletaId,
+    pegaIndiceBicicletaNumero,
 }

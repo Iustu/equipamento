@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a4b7ab1-fe31-47f9-931b-db6da5494ce9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/data/jsons.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/bicicletasController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/bicicletasController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/totensController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/totensController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/trancasController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/trancasController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/validacoes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/validacoes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/integracao/bicicleta.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integracao/bicicleta.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/integracao/tranca.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integracao/tranca.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/unidade/bicicleta.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unidade/bicicleta.test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,22 +41,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/UNIRIO/6 periodo/PM/equipamento/tests/unidade",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs.jest.jest_package": "E:/UNIRIO/6 periodo/PM/equipamento/node_modules/jest",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/UNIRIO/6 periodo/PM/equipamento/tests/unidade&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs.jest.jest_package&quot;: &quot;E:/UNIRIO/6 periodo/PM/equipamento/node_modules/jest&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\UNIRIO\6 periodo\PM\equipamento\tests\unidade" />
@@ -63,7 +70,19 @@
       <recent name="E:\UNIRIO\6 periodo\PM\equipamento\src\classes" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Jest.GET/">
+    <configuration name="GET/" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/tests/unidade/bicicleta.test.js" />
+      <test-names>
+        <test-name value="GET/" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration name="getBicicletas route test" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -78,6 +97,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.GET/" />
         <item itemvalue="Jest.getBicicletas route test" />
       </list>
     </recent_temporary>
@@ -99,11 +119,23 @@
       <workItem from="1687426727061" duration="21660000" />
       <workItem from="1687483967253" duration="1469000" />
       <workItem from="1687730610399" duration="594000" />
-      <workItem from="1687736191289" duration="7212000" />
+      <workItem from="1687736191289" duration="10848000" />
+      <workItem from="1687783980776" duration="7418000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

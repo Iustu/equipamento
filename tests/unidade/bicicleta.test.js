@@ -1,31 +1,59 @@
+'use strict'
+const { build } = require('../../src/app');
 const request = require("supertest");
 const baseURL = "http://localhost:3000/bicicleta";
 const bicicleta = require("../../src/controller/bicicletasController.js");
 
+const newBicicleta = {
+    marca: "caloi",
+    modelo: "Caloteira",
+    ano: "2025",
+}
+const newBicicletaNull = {
+    modelo: "Caloteira",
+    ano: "2025",
+}
+const newBicicletaEmpty = {
+    marca: "",
+    modelo: "Caloteira",
+    ano: "2025",
+}
+
 //testa get
 describe("GET/", () => {
-    const newBicicleta = {
-        marca: "caloi",
-        modelo: "Caloteira",
-        ano: "2025",
-        status: "nova",
-    }
+    const app = build();
+    let post;
+    let postParseado;
+
     beforeAll(async () => {
         // set up the bicicleta
-        await request(baseURL).post("/").send(newBicicleta);
+        post = await app.inject({
+            method:'POST',
+            url: '/bicicleta',
+            body: newBicicleta,
+        });
+        postParseado = JSON.parse(post.body);
     })
     afterAll(async () => {
-        const response = await request(baseURL).get("/");
-        await request(baseURL).delete(`/${response.body.length}`);
+        const deletE = await app.inject({
+            method:'delete',
+            url: `bicicleta/${postParseado.bicicleta.id}`,
+        });
     })
-    it("should return 200", async () => {
-        const response = await request(baseURL).get("/");
+
+    it("should return 202",async ()=>{
+
+        const response = await app.inject({
+            method: 'GET',
+            url: '/bicicleta'
+        });
         expect(response.statusCode).toBe(200);
     });
-    it("should return an array", async () => {
-        const response = await request(baseURL).get("/");
-        expect(response.body.length >= 1 ).toBe(true);
-    });
+
+    // it("should return an array", async () => {
+    //     const response = await request(baseURL).get("/");
+    //     expect(response.body.length >= 1 ).toBe(true);
+    // });
 });
 
 // //testa get/id

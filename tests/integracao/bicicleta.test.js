@@ -37,6 +37,7 @@ describe('get/', () => {
                 modelo: "Caloteira",
                 ano: "2025",
                 status: "nova",
+                numero: "1234"
             }
         });
 
@@ -70,6 +71,7 @@ describe('get/id', () => {
                 modelo: "Caloteira",
                 ano: "2025",
                 status: "nova",
+                numero: "1234"
             }
         })
         const parsedPost = JSON.parse(post.body);
@@ -87,6 +89,7 @@ describe('get/id', () => {
                 modelo: "Caloteira",
                 ano: "2025",
                 status: "nova",
+                numero: "1234"
             }
         );
 
@@ -140,6 +143,7 @@ describe('get/id', () => {
                  modelo: "Caloteira",
                  ano: "2025",
                  status: "nova",
+                 numero: "1234"
              }
          })
          const parsedPost = JSON.parse(post.body);
@@ -175,6 +179,7 @@ describe('get/id', () => {
                  modelo: "Caloteira",
                  ano: "2025",
                  status: "nova",
+                 numero: "1234"
              }
          })
          const parsedPost = JSON.parse(post.body);
@@ -194,6 +199,7 @@ describe('get/id', () => {
                  modelo: "Caloteira",
                  ano: "2025",
                  status: "nova",
+                 numero: "1234"
              }
          })
          const parsedPost = JSON.parse(post.body);
@@ -215,6 +221,7 @@ describe("PUT /id", () => {
                 modelo: "Caloteira",
                 ano: "2025",
                 status: "nova",
+                numero: "1234"
             }
         })
         const parsedPost = JSON.parse(post.body);
@@ -233,6 +240,7 @@ describe("PUT /id", () => {
                 modelo: "Caloteira2",
                 ano: "2022",
                 status: "nova",
+                numero: "1234"
             }
         })
         const parsedPut = JSON.parse(put.body);
@@ -263,6 +271,7 @@ describe("PUT /id", () => {
                 modelo: "Caloteira",
                 ano: "2025",
                 status: "nova",
+                numero: "1234"
             }
         })
         const parsedPost = JSON.parse(post.body);
@@ -274,6 +283,7 @@ describe("PUT /id", () => {
                 modelo: "Caloteira",
                 ano: "2025",
                 status: "nova",
+                numero: "1234"
             }
         })
         const parsedPut = JSON.parse(put.body);
@@ -297,6 +307,7 @@ describe("PUT /id", () => {
                 modelo: "Caloteira",
                 ano: "2025",
                 status: "nova",
+                numero: "1234"
             }
         })
         const parsedPost = JSON.parse(post.body);
@@ -309,6 +320,7 @@ describe("PUT /id", () => {
                 modelo: "Caloteira",
                 ano: "2025",
                 status: "nova",
+                numero: "1234"
             }
         })
         const parsedPut = JSON.parse(put.body);
@@ -331,6 +343,7 @@ describe("PUT /id", () => {
                 modelo: "Caloteira",
                 ano: "2025",
                 status: "nova",
+                numero: "1234"
             }
         })
         const parsedPost = JSON.parse(post.body);
@@ -342,6 +355,8 @@ describe("PUT /id", () => {
                 modelo: "Caloteira",
                 ano: "2025",
                 status: "nova",
+                numero: "1234"
+
             }
         })
         const parsedPut = JSON.parse(put.body);
@@ -370,6 +385,7 @@ describe("Delete /id", ()=>{
                 modelo: "Caloteira",
                 ano: "2025",
                 status: "nova",
+                numero: "1234"
             }
         })
         const parsedPost = JSON.parse(post.body);

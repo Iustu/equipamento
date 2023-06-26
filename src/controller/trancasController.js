@@ -9,7 +9,7 @@ const getTrancas = async (request, reply) => {
 
 const getTrancaById = async(request, reply) => {
     try {
-        const indice = pegaIndiceTranca(request.params.id);
+        const indice = pegaIndiceTrancaId(request.params.id);
 
         if (indice == -1) {
             reply.status(404);
@@ -32,13 +32,13 @@ const getTrancaById = async(request, reply) => {
 
 const criarTranca = async (request, reply) => {
     try {
-        const passaN = passaNullTranca(request.body.localizacao, request.body.modelo, request.body.anoFabricacao);
+        const passaN = passaNullTranca(request.body.localizacao, request.body.modelo, request.body.anoFabricacao,request.body.numero);
         if (!passaN){
             reply.status(422);
             reply.send({message:"Dados inválidos (Null)"})
             return;
         }
-        const passaE = passaEmptyTranca(request.body.localizacao, request.body.modelo, request.body.anoFabricacao);
+        const passaE = passaEmptyTranca(request.body.localizacao, request.body.modelo, request.body.anoFabricacao,request.body.numero);
         if (!passaE){
             reply.status(422);
             reply.send({message:"Dados inválidos (Empty)"})
@@ -53,6 +53,7 @@ const criarTranca = async (request, reply) => {
                 localizacao: request.body.localizacao,
                 modelo: request.body.modelo,
                 anoFabricacao: request.body.anoFabricacao,
+                numero: request.body.numero,
                 status: "nova",
             });
 
@@ -63,6 +64,7 @@ const criarTranca = async (request, reply) => {
                 localizacao: request.body.localizacao,
                 modelo: request.body.modelo,
                 anoFabricacao: request.body.anoFabricacao,
+                numero: request.body.numero,
                 status: "nova",
             }
         }
@@ -76,20 +78,20 @@ const criarTranca = async (request, reply) => {
 
 const atualizarTranca = async(request, reply) => {
     try {
-        const indice = pegaIndiceTranca(request.params.id);
+        const indice = pegaIndiceTrancaId(request.params.id);
 
         if(indice == -1) {
             reply.status(404);
             reply.send({message: "Não encontrado"});
             return;
         }
-        const passaN = passaNullTranca(request.body.localizacao, request.body.modelo, request.body.anoFabricacao);
+        const passaN = passaNullTranca(request.body.localizacao, request.body.modelo, request.body.anoFabricacao,request.body.numero);
         if (!passaN){
             reply.status(422);
             reply.send({message:"Dados inválidos (Null)"});
             return;
         }
-        const passaE = passaEmptyTranca(request.body.localizacao, request.body.modelo, request.body.anoFabricacao);
+        const passaE = passaEmptyTranca(request.body.localizacao, request.body.modelo, request.body.anoFabricacao,request.body.numero);
         if (!passaE){
             reply.status(422);
             reply.send({message:"Dados inválidos (Empty)"});
@@ -113,7 +115,7 @@ const atualizarTranca = async(request, reply) => {
 
 const removerTrancaById = async(request, reply) => {
     try {
-        const indice = pegaIndiceTranca(request.params.id);
+        const indice = pegaIndiceTrancaId(request.params.id);
 
         if(indice == -1) {
             reply.status(404)
@@ -131,7 +133,7 @@ const removerTrancaById = async(request, reply) => {
     }
 };
 
-function pegaIndiceTranca(id) {
+function pegaIndiceTrancaId(id) {
 
     const len = trancas.length;
 
@@ -142,8 +144,17 @@ function pegaIndiceTranca(id) {
     }
     return -1;
 }
+function pegaIndiceTrancaNumero(numero) {
 
+    const len = trancas.length;
 
+    for (let i = 0; i < len; i++) {
+        if (trancas[i].numero == numero) {
+            return i;
+        }
+    }
+    return -1;
+}
 
 module.exports = {
     getTrancas,
@@ -151,4 +162,6 @@ module.exports = {
     criarTranca,
     atualizarTranca,
     removerTrancaById,
+    pegaIndiceTrancaNumero,
+    pegaIndiceTrancaId,
 }

@@ -79,13 +79,13 @@ const atualizarTotem = async(request, reply) => {
             reply.send({message: "Não encontrado"});
             return;
         }
-        const passaN = passaNullTotem(request.body.localizacao, request.body.descricao);
+        const passaN = passaNullTotem(request.body.localizacao, request.body.descricao,request.body.numero);
         if (!passaN){
             reply.status(422);
             reply.send({message:"Dados inválidos (Null)"});
             return;
         }
-        const passaE = passaEmptyTotem(request.body.localizacao, request.body.descricao);
+        const passaE = passaEmptyTotem(request.body.localizacao, request.body.descricao,request.body.numero);
         if (!passaE){
             reply.status(422);
             reply.send({message:"Dados inválidos (Empty)"});
@@ -142,4 +142,5 @@ module.exports = {
     criarTotem,
     atualizarTotem,
     removerTotemById,
+    pegaIndiceTotem,
 }
