@@ -1,3 +1,4 @@
+const {passaNullTranca, passaEmptyTranca} = require("../utils/validacoes");
 let trancas = [
 
 ];
@@ -31,13 +32,13 @@ const getTrancaById = async(request, reply) => {
 
 const criarTranca = async (request, reply) => {
     try {
-        const passaN = passaNull(request.body.localizacao, request.body.modelo, request.body.anoFabricacao);
+        const passaN = passaNullTranca(request.body.localizacao, request.body.modelo, request.body.anoFabricacao);
         if (!passaN){
             reply.status(422);
             reply.send({message:"Dados inválidos (Null)"})
             return;
         }
-        const passaE = passaEmpty(request.body.localizacao, request.body.modelo, request.body.anoFabricacao);
+        const passaE = passaEmptyTranca(request.body.localizacao, request.body.modelo, request.body.anoFabricacao);
         if (!passaE){
             reply.status(422);
             reply.send({message:"Dados inválidos (Empty)"})
@@ -82,13 +83,13 @@ const atualizarTranca = async(request, reply) => {
             reply.send({message: "Não encontrado"});
             return;
         }
-        const passaN = passaNull(request.body.localizacao, request.body.modelo, request.body.anoFabricacao);
+        const passaN = passaNullTranca(request.body.localizacao, request.body.modelo, request.body.anoFabricacao);
         if (!passaN){
             reply.status(422);
             reply.send({message:"Dados inválidos (Null)"});
             return;
         }
-        const passaE = passaEmpty(request.body.localizacao, request.body.modelo, request.body.anoFabricacao);
+        const passaE = passaEmptyTranca(request.body.localizacao, request.body.modelo, request.body.anoFabricacao);
         if (!passaE){
             reply.status(422);
             reply.send({message:"Dados inválidos (Empty)"});
@@ -142,14 +143,7 @@ function pegaIndiceTranca(id) {
     return -1;
 }
 
-function passaNull(localizacao,modelo,anoFabricacao){
-    return !(localizacao == null || modelo == null || anoFabricacao == null);
 
-}
-function passaEmpty(localizacao,modelo,anoFabricacao){
-    return !(localizacao == "" || modelo == "" || anoFabricacao == "");
-
-}
 
 module.exports = {
     getTrancas,

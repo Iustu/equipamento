@@ -1,6 +1,6 @@
 'use strict'
 
-const { build } = require('../src/app');
+const { build } = require('../../src/app');
 
 //testa get
 describe('get/', () => {

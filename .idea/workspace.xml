@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a4b7ab1-fe31-47f9-931b-db6da5494ce9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/utils/validacoes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/unidade/bicicleta.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/unidade/totem.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/unidade/tranca.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/tranca.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/tranca.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/bicicletasController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/bicicletasController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/totensController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/totensController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/trancasController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/trancasController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/bicicleta.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integracao/bicicleta.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/totem.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integracao/totem.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/tranca.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integracao/tranca.test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +49,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/UNIRIO/6 periodo/PM/equipamento/src/backup",
+    "last_opened_file_path": "E:/UNIRIO/6 periodo/PM/equipamento/tests/unidade",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -52,11 +62,13 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\UNIRIO\6 periodo\PM\equipamento\tests\unidade" />
       <recent name="E:\UNIRIO\6 periodo\PM\equipamento\src\backup" />
       <recent name="D:\UNIRIO\6 periodo\PM\equipamento\tests" />
       <recent name="D:\UNIRIO\6 periodo\PM\equipamento\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\UNIRIO\6 periodo\PM\equipamento\tests\integracao" />
       <recent name="E:\UNIRIO\6 periodo\PM\equipamento" />
       <recent name="E:\UNIRIO\6 periodo\PM\equipamento\src\classes" />
     </key>
@@ -94,7 +106,10 @@
       <workItem from="1687307653667" duration="7654000" />
       <workItem from="1687354637663" duration="14066000" />
       <workItem from="1687388773020" duration="3853000" />
-      <workItem from="1687426727061" duration="20848000" />
+      <workItem from="1687426727061" duration="21660000" />
+      <workItem from="1687483967253" duration="1469000" />
+      <workItem from="1687730610399" duration="594000" />
+      <workItem from="1687736191289" duration="5798000" />
     </task>
     <servers />
   </component>

@@ -1,3 +1,4 @@
+const {passaNullBicicleta, passaEmptyBicicleta} = require("../utils/validacoes");
 let bicicletas = [
 
 ];
@@ -31,13 +32,13 @@ const getBicicletaById = async(request, reply) => {
 
 const criarBicicleta = async (request, reply) => {
     try {
-        const passaN = passaNull(request.body.marca, request.body.modelo, request.body.ano);
+        const passaN = passaNullBicicleta(request.body.marca, request.body.modelo, request.body.ano);
         if (!passaN){
             reply.status(422);
             reply.send({message:"Dados inválidos (Null)"})
             return;
         }
-        const passaE = passaEmpty(request.body.marca, request.body.modelo, request.body.ano);
+        const passaE = passaEmptyBicicleta(request.body.marca, request.body.modelo, request.body.ano);
         if (!passaE){
             reply.status(422);
             reply.send({message:"Dados inválidos (Empty)"})
@@ -81,13 +82,13 @@ const atualizarBicicleta = async(request, reply) => {
             reply.send({message: "Não encontrado"});
             return;
         }
-        const passaN = passaNull(request.body.marca, request.body.modelo, request.body.ano);
+        const passaN = passaNullBicicleta(request.body.marca, request.body.modelo, request.body.ano);
         if (!passaN){
             reply.status(422);
             reply.send({message:"Dados inválidos (Null)"});
             return;
         }
-        const passaE = passaEmpty(request.body.marca, request.body.modelo, request.body.ano);
+        const passaE = passaEmptyBicicleta(request.body.marca, request.body.modelo, request.body.ano);
         if (!passaE){
             reply.status(422);
             reply.send({message:"Dados inválidos (Empty)"});
@@ -141,14 +142,7 @@ function pegaIndiceBicicleta(id) {
     return -1;
 }
 
-function passaNull(marca,modelo,ano){
-    return !(marca == null || modelo == null || ano == null);
 
-}
-function passaEmpty(marca,modelo,ano){
-    return !(marca == "" || modelo == "" || ano == "");
-
-}
 
 module.exports = {
     getBicicletas,

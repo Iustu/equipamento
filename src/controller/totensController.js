@@ -1,3 +1,4 @@
+const {passaNullTotem, passaEmptyTotem} = require("../utils/validacoes");
 let totens = [
 
 ];
@@ -31,13 +32,13 @@ const getTotemById = async(request, reply) => {
 
 const criarTotem = async (request, reply) => {
     try {
-        const passaN = passaNull(request.body.localizacao, request.body.descricao);
+        const passaN = passaNullTotem(request.body.localizacao, request.body.descricao);
         if (!passaN){
             reply.status(422);
             reply.send({message:"Dados inválidos (Null)"})
             return;
         }
-        const passaE = passaEmpty(request.body.localizacao,request.body.descricao);
+        const passaE = passaEmptyTotem(request.body.localizacao,request.body.descricao);
         if (!passaE){
             reply.status(422);
             reply.send({message:"Dados inválidos (Empty)"})
@@ -78,13 +79,13 @@ const atualizarTotem = async(request, reply) => {
             reply.send({message: "Não encontrado"});
             return;
         }
-        const passaN = passaNull(request.body.localizacao, request.body.descricao);
+        const passaN = passaNullTotem(request.body.localizacao, request.body.descricao);
         if (!passaN){
             reply.status(422);
             reply.send({message:"Dados inválidos (Null)"});
             return;
         }
-        const passaE = passaEmpty(request.body.localizacao, request.body.descricao);
+        const passaE = passaEmptyTotem(request.body.localizacao, request.body.descricao);
         if (!passaE){
             reply.status(422);
             reply.send({message:"Dados inválidos (Empty)"});
@@ -133,13 +134,6 @@ function pegaIndiceTotem(id) {
         }
     }
     return -1;
-}
-
-function passaNull(localizacao,descricao){
-    return !(localizacao == null || descricao == null);
-}
-function passaEmpty(localizacao,descricao){
-    return !(localizacao == "" || descricao == "");
 }
 
 module.exports = {
