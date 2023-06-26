@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a4b7ab1-fe31-47f9-931b-db6da5494ce9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/data/jsons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/bicicletasController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/bicicletasController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/totensController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/totensController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/trancasController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/trancasController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/validacoes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/validacoes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/integracao/bicicleta.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integracao/bicicleta.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/integracao/tranca.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integracao/tranca.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unidade/bicicleta.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unidade/bicicleta.test.js" afterDir="false" />
-    </list>
+    <list default="true" id="8a4b7ab1-fe31-47f9-931b-db6da5494ce9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -120,7 +110,7 @@
       <workItem from="1687483967253" duration="1469000" />
       <workItem from="1687730610399" duration="594000" />
       <workItem from="1687736191289" duration="10848000" />
-      <workItem from="1687783980776" duration="7418000" />
+      <workItem from="1687783980776" duration="7724000" />
     </task>
     <servers />
   </component>
