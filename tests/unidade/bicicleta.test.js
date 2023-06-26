@@ -8,15 +8,18 @@ const newBicicleta = {
     marca: "caloi",
     modelo: "Caloteira",
     ano: "2025",
+    numero:"2345",
 }
 const newBicicletaNull = {
     modelo: "Caloteira",
     ano: "2025",
+    numero:"2345",
 }
 const newBicicletaEmpty = {
     marca: "",
     modelo: "Caloteira",
     ano: "2025",
+    numero:"2345",
 }
 
 //testa get
@@ -41,7 +44,7 @@ describe("GET/", () => {
         });
     })
 
-    it("should return 202",async ()=>{
+    it("should return 200",async ()=>{
 
         const response = await app.inject({
             method: 'GET',
