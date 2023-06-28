@@ -1,10 +1,6 @@
 const {passaNullBicicleta, passaEmptyBicicleta} = require("../utils/validacoes");
 const{pegaIndiceBicicletaId, retornaBicicletas, retornaBicicletaId, colocaBicicleta, atualizaBicicleta, deletaBicicleta } = require("../data/bdd");
 
-// let bicicletas = [
-//
-// ];
-
 const getBicicletas = async (request, reply) => {
     return reply.status(200).send(retornaBicicletas());
 };
@@ -21,7 +17,6 @@ const getBicicletaById = async(request, reply) => {
 
         reply.status(200);
         reply.send({message: "Bicicleta encontrada",bicicleta:retornaBicicletaId(indice)});
-        //reply.send({message: "Bicicleta encontrada",bicicleta:bicicletas[indice]});
 
     } catch (error) {
         console.error(error);
@@ -47,31 +42,12 @@ const criarBicicleta = async (request, reply) => {
             return;
         }
 
-        colocaBicicleta(request.body.marca, request.body.modelo, request.body.ano,request.body.numero);
-        //const newId = bicicletas.length+1;
-        // bicicletas.push(
-        //     {
-        //         id: newId,
-        //         marca: request.body.marca,
-        //         modelo: request.body.modelo,
-        //         numero: request.body.numero,
-        //         ano: request.body.ano,
-        //         status: "nova",
-        //     });
-        //
+        const novaBike = colocaBicicleta(request.body.marca, request.body.modelo, request.body.ano,request.body.numero);
 
         const json = {
             message:"Dados cadastrados",
-            bicicleta:{
-                id: newId,
-                marca: request.body.marca,
-                modelo: request.body.modelo,
-                numero: request.body.numero,
-                ano: request.body.ano,
-                status: "nova"}
+            bicicleta:novaBike
         }
-
-        console.log("CHEGOU");
 
         reply.status(200);
         reply.send(json);
@@ -103,12 +79,7 @@ const atualizarBicicleta = async(request, reply) => {
             return;
         }
 
-         const bicicletaSelecionada = atualizaBicicleta(indice,request.body.marca, request.body.modelo, request.body.numero,request.body.ano,request.body.status);
-        // bicicletaSelecionada.marca = request.body.marca;
-        // bicicletaSelecionada.modelo = request.body.modelo;
-        // bicicletaSelecionada.ano = request.body.ano;
-        // bicicletaSelecionada.status = request.body.status;
-        // bicicletaSelecionada.numero = request.body.numero;
+        const bicicletaSelecionada = atualizaBicicleta(indice,request.body.marca, request.body.modelo, request.body.numero,request.body.ano,request.body.status);
 
         reply.status(200);
         reply.send({message:"Dados atualizados",bicicleta:bicicletaSelecionada});
@@ -130,7 +101,7 @@ const removerBicicletaById = async(request, reply) => {
         }
 
         deletaBicicleta(indice);
-        //bicicletas.splice(indice, 1);
+
         reply.status(200);
         reply.send({message: "Dados removidos"});
     }
@@ -140,33 +111,10 @@ const removerBicicletaById = async(request, reply) => {
     }
 };
 
-// function pegaIndiceBicicletaId(id) {
-//     const len = bicicletas.length;
-//
-//     for (let i = 0; i < len; i++) {
-//         if (bicicletas[i].id == id) {
-//             return i;
-//         }
-//     }
-//     return -1;
-// }
-// function pegaIndiceBicicletaNumero(numero) {
-//     const len = bicicletas.length;
-//
-//     for (let i = 0; i < len; i++) {
-//         if (bicicletas[i].numero == numero) {
-//             return i;
-//         }
-//     }
-//     return -1;
-// }
-
 module.exports = {
     getBicicletas,
     getBicicletaById,
     criarBicicleta,
     atualizarBicicleta,
     removerBicicletaById,
-    //pegaIndiceBicicletaId,
-    //pegaIndiceBicicletaNumero,
 }

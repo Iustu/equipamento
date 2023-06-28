@@ -12,16 +12,18 @@ function retornaBicicletaId(indice){
 
 function colocaBicicleta(marca, modelo, ano, numero){
     const newId = bicicletas.length+1;
-    bicicletas.push(
-        {
+    const bike = {
             id: newId,
             marca: marca,
             modelo: modelo,
             numero: numero,
             ano: ano,
             status: "nova",
-        });
+        };
+    bicicletas.push(bike);
+    return bike;
 }
+
 function atualizaBicicleta(indice,marca,modelo,numero,ano,status){
     const bicicletaSelecionada = bicicletas[indice];
 
@@ -48,16 +50,16 @@ function pegaIndiceBicicletaId(id) {
     }
     return -1;
 }
-function pegaIndiceBicicletaNumero(numero) {
-    const len = bicicletas.length;
-
-    for (let i = 0; i < len; i++) {
-        if (bicicletas[i].numero == numero) {
-            return i;
-        }
-    }
-    return -1;
-}
+// function pegaIndiceBicicletaNumero(numero) {
+//     const len = bicicletas.length;
+//
+//     for (let i = 0; i < len; i++) {
+//         if (bicicletas[i].numero == numero) {
+//             return i;
+//         }
+//     }
+//     return -1;
+// }
 
 module.exports = {
     retornaBicicletas,
@@ -66,6 +68,6 @@ module.exports = {
     atualizaBicicleta,
     deletaBicicleta,
     pegaIndiceBicicletaId,
-    pegaIndiceBicicletaNumero,
+    //pegaIndiceBicicletaNumero,
 }
 
