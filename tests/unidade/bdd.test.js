@@ -74,15 +74,15 @@ describe("Testa atualização de um elemento no array de Bicicleta",()=>{
          status: "nova"
       }
 
-      expect(bicicleta != bicicletaDummy).toBe(true);
+      expect(bicicleta !== bicicletaDummy).toBe(true);
    });
 });
 
 describe("Testa remoção de um elemento no array de Bicicleta",()=>{
-   let bicicleta;
+
    let size;
    beforeAll(()=>{
-      bicicleta = colocaBicicleta("Teste","Teste",2000,2000);
+      colocaBicicleta("Teste","Teste",2000,2000);
       size = retornaBicicletas().length;
    });
 
