@@ -79,8 +79,6 @@ const atualizarTranca = async(request, reply) => {
             return;
         }
 
-        console.log("@@@@@@@@@@@@",request.body);
-
         const trancaSelecionada = atualizaTranca(indice,request.body.localizacao,request.body.modelo,request.body.anoFabricacao,request.body.numero,request.body.status);
 
         reply.status(200);

@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a4b7ab1-fe31-47f9-931b-db6da5494ce9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/unidade/validacoes.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/bicicletasController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/bicicletasController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/totensController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/totensController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/trancasController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/trancasController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/bdd.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/bdd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/bicicletasRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/bicicletasRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unidade/bicicleta.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unidade/bicicletaController.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unidade/bdd.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unidade/bdd.test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +63,7 @@
       <recent name="E:\UNIRIO\6 periodo\PM\equipamento\src\classes" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.GET/">
+  <component name="RunManager" selected="Jest.Testa atualização de um elemento no array de Bicicleta.Should actualize an object in array">
     <configuration name="GET/" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -120,25 +114,26 @@
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Testa remoção de um elemento no array de Bicicleta" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="Testa atualização de um elemento no array de Bicicleta.Should actualize an object in array" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
-      <scope-kind value="SUITE" />
+      <scope-kind value="TEST" />
       <test-file value="$PROJECT_DIR$/tests/unidade/bdd.test.js" />
       <test-names>
-        <test-name value="Testa remoção de um elemento no array de Bicicleta" />
+        <test-name value="Testa atualização de um elemento no array de Bicicleta" />
+        <test-name value="Should actualize an object in array" />
       </test-names>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.Testa atualização de um elemento no array de Bicicleta.Should actualize an object in array" />
+        <item itemvalue="Jest.Testa atualização de um elemento no array de Bicicleta" />
         <item itemvalue="Jest.GET/" />
         <item itemvalue="Jest.GET/.should return a array" />
         <item itemvalue="Jest.GET/.should return 200" />
-        <item itemvalue="Jest.Testa remoção de um elemento no array de Bicicleta" />
-        <item itemvalue="Jest.Testa atualização de um elemento no array de Bicicleta" />
       </list>
     </recent_temporary>
   </component>
@@ -163,6 +158,8 @@
       <workItem from="1687783980776" duration="9454000" />
       <workItem from="1687801514451" duration="5987000" />
       <workItem from="1687956150227" duration="24172000" />
+      <workItem from="1687986932457" duration="17000" />
+      <workItem from="1687988518466" duration="1343000" />
     </task>
     <servers />
   </component>
