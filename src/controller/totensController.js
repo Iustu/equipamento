@@ -1,15 +1,14 @@
 const {passaNullTotem, passaEmptyTotem} = require("../utils/validacoes");
-let totens = [
+const {retornaTotens, pegaIndiceTotemId, retornaTotemIndice, colocaTotem, atualizaTotem, deletaTotem} = require("../data/bdd");
 
-];
 
 const getTotens = async (request, reply) => {
-    return reply.status(200).send(totens);
+    return reply.status(200).send(retornaTotens());
 };
 
 const getTotemById = async(request, reply) => {
     try {
-        const indice = pegaIndiceTotem(request.params.id);
+        const indice = pegaIndiceTotemId(request.params.id);
 
         if (indice == -1) {
             reply.status(404);
@@ -18,7 +17,7 @@ const getTotemById = async(request, reply) => {
         }
 
         reply.status(200);
-        reply.send({message: "Totem encontrada",totem:totens[indice]});
+        reply.send({message: "Totem encontrada",totem:retornaTotemIndice(indice)});
 
 
     } catch (error) {
@@ -45,22 +44,11 @@ const criarTotem = async (request, reply) => {
             return;
         }
 
-        const newId = totens.length+1;
-
-        totens.push(
-            {
-                id: newId,
-                localizacao: request.body.localizacao,
-                descricao: request.body.descricao,
-            });
+        const novoTotem = colocaTotem(request.body.localizacao,request.body.descricao);
 
         const json = {
             message:"Dados cadastrados",
-            totem:{
-                id: newId,
-                localizacao: request.body.localizacao,
-                descricao: request.body.descricao,
-            }
+            totem: novoTotem,
         }
         reply.status(200);
         reply.send(json);
@@ -72,7 +60,7 @@ const criarTotem = async (request, reply) => {
 
 const atualizarTotem = async(request, reply) => {
     try {
-        const indice = pegaIndiceTotem(request.params.id);
+        const indice = pegaIndiceTotemId(request.params.id);
 
         if(indice == -1) {
             reply.status(404);
@@ -92,9 +80,7 @@ const atualizarTotem = async(request, reply) => {
             return;
         }
 
-        const totemSelecionado = totens[indice];
-        totemSelecionado.localizacao = request.body.localizacao;
-        totemSelecionado.descricao = request.body.descricao;
+        const totemSelecionado = atualizaTotem(indice,request.body.localizacao,request.body.descricao);
 
         reply.status(200);
         reply.send({message:"Dados atualizados",totem:totemSelecionado});
@@ -107,7 +93,7 @@ const atualizarTotem = async(request, reply) => {
 
 const removerTotemById = async(request, reply) => {
     try {
-        const indice = pegaIndiceTotem(request.params.id);
+        const indice = pegaIndiceTotemId(request.params.id);
 
         if(indice == -1) {
             reply.status(404)
@@ -115,7 +101,8 @@ const removerTotemById = async(request, reply) => {
             return;
         }
 
-        totens.splice(indice, 1);
+        deletaTotem(indice);
+
         reply.status(200);
         reply.send({message: "Dados removidos"});
     }
@@ -125,22 +112,10 @@ const removerTotemById = async(request, reply) => {
     }
 };
 
-function pegaIndiceTotem(id) {
-    const len = totens.length;
-
-    for (let i = 0; i < len; i++) {
-        if (totens[i].id == id) {
-            return i;
-        }
-    }
-    return -1;
-}
-
 module.exports = {
     getTotens,
     getTotemById,
     criarTotem,
     atualizarTotem,
     removerTotemById,
-    pegaIndiceTotem,
 }

@@ -3,6 +3,7 @@ const { build } = require('../../src/app');
 const request = require("supertest");
 const baseURL = "http://localhost:3000/bicicleta";
 const bicicleta = require("../../src/controller/bicicletasController.js");
+const {getBicicletas } = require("../../src/controller/bicicletasController.js");
 
 const newBicicleta = {
     marca: "caloi",
@@ -25,27 +26,8 @@ const newBicicletaEmpty = {
 //testa get
 describe("GET/", () => {
     const app = build();
-    let post;
-    let postParseado;
-
-    beforeAll(async () => {
-        // set up the bicicleta
-        post = await app.inject({
-            method:'POST',
-            url: '/bicicleta',
-            body: newBicicleta,
-        });
-        postParseado = JSON.parse(post.body);
-    })
-    afterAll(async () => {
-        const deletE = await app.inject({
-            method:'delete',
-            url: `bicicleta/${postParseado.bicicleta.id}`,
-        });
-    })
 
     it("should return 200",async ()=>{
-
         const response = await app.inject({
             method: 'GET',
             url: '/bicicleta'
@@ -53,10 +35,14 @@ describe("GET/", () => {
         expect(response.statusCode).toBe(200);
     });
 
-    // it("should return an array", async () => {
-    //     const response = await request(baseURL).get("/");
-    //     expect(response.body.length >= 1 ).toBe(true);
-    // });
+    it("should return a array", async () =>{
+        const response = await app.inject({
+            method: 'GET',
+            url: '/bicicleta'
+        });
+        expect(response.statusCode).toBe(200);
+    });
+
 });
 
 // //testa get/id

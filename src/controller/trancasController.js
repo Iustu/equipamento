@@ -1,10 +1,8 @@
 const {passaNullTranca, passaEmptyTranca} = require("../utils/validacoes");
-let trancas = [
-
-];
+const{pegaIndiceTrancaId, pegaIndiceTrancaNumero, retornaTrancas, retornaTrancaIndice, colocaTranca, atualizaTranca, deletaTranca} = require("../data/bdd");
 
 const getTrancas = async (request, reply) => {
-    return reply.status(200).send(trancas);
+    return reply.status(200).send(retornaTrancas());
 };
 
 const getTrancaById = async(request, reply) => {
@@ -18,7 +16,7 @@ const getTrancaById = async(request, reply) => {
         }
 
         reply.status(200);
-        reply.send({message: "Tranca encontrada",tranca:trancas[indice]});
+        reply.send({message: "Tranca encontrada",tranca:retornaTrancaIndice(indice)});
 
 
     } catch (error) {
@@ -45,28 +43,11 @@ const criarTranca = async (request, reply) => {
             return;
         }
 
-        const newId = trancas.length+1;
-
-        trancas.push(
-            {
-                id: newId,
-                localizacao: request.body.localizacao,
-                modelo: request.body.modelo,
-                anoFabricacao: request.body.anoFabricacao,
-                numero: request.body.numero,
-                status: "nova",
-            });
+        const novaTranca = colocaTranca(request.body.localizacao,request.body.modelo,request.body.anoFabricacao,request.body.numero);
 
         const json = {
             message:"Dados cadastrados",
-            tranca:{
-                id: newId,
-                localizacao: request.body.localizacao,
-                modelo: request.body.modelo,
-                anoFabricacao: request.body.anoFabricacao,
-                numero: request.body.numero,
-                status: "nova",
-            }
+            tranca: novaTranca,
         }
         reply.status(200);
         reply.send(json);
@@ -85,24 +66,22 @@ const atualizarTranca = async(request, reply) => {
             reply.send({message: "Não encontrado"});
             return;
         }
-        const passaN = passaNullTranca(request.body.localizacao, request.body.modelo, request.body.anoFabricacao,request.body.numero);
+        const passaN = passaNullTranca(request.body.localizacao, request.body.modelo, request.body.anoFabricacao,request.body.numero,request.body.status);
         if (!passaN){
             reply.status(422);
             reply.send({message:"Dados inválidos (Null)"});
             return;
         }
-        const passaE = passaEmptyTranca(request.body.localizacao, request.body.modelo, request.body.anoFabricacao,request.body.numero);
+        const passaE = passaEmptyTranca(request.body.localizacao, request.body.modelo, request.body.anoFabricacao,request.body.numero,request.body.status);
         if (!passaE){
             reply.status(422);
             reply.send({message:"Dados inválidos (Empty)"});
             return;
         }
 
-        const trancaSelecionada = trancas[indice];
-        trancaSelecionada.localizacao = request.body.localizacao;
-        trancaSelecionada.modelo = request.body.modelo;
-        trancaSelecionada.anoFabricacao = request.body.Fabricacao;
-        trancaSelecionada.status = request.body.status;
+        console.log("@@@@@@@@@@@@",request.body);
+
+        const trancaSelecionada = atualizaTranca(indice,request.body.localizacao,request.body.modelo,request.body.anoFabricacao,request.body.numero,request.body.status);
 
         reply.status(200);
         reply.send({message:"Dados atualizados",tranca:trancaSelecionada});
@@ -123,7 +102,7 @@ const removerTrancaById = async(request, reply) => {
             return;
         }
 
-        trancas.splice(indice, 1);
+        deletaTranca(indice);
         reply.status(200);
         reply.send({message: "Dados removidos"});
     }
@@ -133,28 +112,6 @@ const removerTrancaById = async(request, reply) => {
     }
 };
 
-function pegaIndiceTrancaId(id) {
-
-    const len = trancas.length;
-
-    for (let i = 0; i < len; i++) {
-        if (trancas[i].id == id) {
-            return i;
-        }
-    }
-    return -1;
-}
-function pegaIndiceTrancaNumero(numero) {
-
-    const len = trancas.length;
-
-    for (let i = 0; i < len; i++) {
-        if (trancas[i].numero == numero) {
-            return i;
-        }
-    }
-    return -1;
-}
 
 module.exports = {
     getTrancas,
@@ -162,6 +119,4 @@ module.exports = {
     criarTranca,
     atualizarTranca,
     removerTrancaById,
-    pegaIndiceTrancaNumero,
-    pegaIndiceTrancaId,
 }

@@ -1,5 +1,7 @@
 const {passaNullBicicleta, passaEmptyBicicleta} = require("../utils/validacoes");
-const{pegaIndiceBicicletaId, retornaBicicletas, retornaBicicletaId, colocaBicicleta, atualizaBicicleta, deletaBicicleta } = require("../data/bdd");
+const{pegaIndiceBicicletaId, pegaIndiceBicicletaNumero, retornaBicicletas, retornaBicicletaIndice, colocaBicicleta, atualizaBicicleta, deletaBicicleta,
+    registraInclusao
+} = require("../data/bdd");
 
 const getBicicletas = async (request, reply) => {
     return reply.status(200).send(retornaBicicletas());
@@ -9,14 +11,14 @@ const getBicicletaById = async(request, reply) => {
     try {
         const indice = pegaIndiceBicicletaId(request.params.id);
 
-        if (indice == -1) {
+        if (indice === -1) {
             reply.status(404);
             reply.send({codigo:404,message: "Não encontrado"});
             return;
         }
 
         reply.status(200);
-        reply.send({message: "Bicicleta encontrada",bicicleta:retornaBicicletaId(indice)});
+        reply.send({message: "Bicicleta encontrada",bicicleta:retornaBicicletaIndice(indice)});
 
     } catch (error) {
         console.error(error);
@@ -61,7 +63,7 @@ const atualizarBicicleta = async(request, reply) => {
     try {
         const indice = pegaIndiceBicicletaId(request.params.id);
 
-        if(indice == -1) {
+        if(indice === -1) {
             reply.status(404);
             reply.send({message: "Não encontrado"});
             return;
@@ -111,10 +113,42 @@ const removerBicicletaById = async(request, reply) => {
     }
 };
 
+const integrarNaRede = async (request, reply) => {
+    //validar numero bicicleta
+    const indice = pegaIndiceBicicletaNumero(request.numeroBicicleta);
+    if(indice == -1) {
+        reply.status(202);
+        reply.send({message: "Numero bicicleta inválido"});
+        return;
+    }
+    let bicicleta = retornaBicicletaId(indice);
+    //validar status bicicleta
+
+    //validarTranca
+
+    //registrar dados inclusao
+    registraInclusao(request.body.numeroTranca, request.body.numeroBicicleta,);
+
+    //fechar tranca
+
+
+    //mudar status para disponivel
+
+    //enviar email
+
+    //voltar mensagem
+};
+
+const retirarDaRede = async (request, reply) => {
+
+};
+
 module.exports = {
     getBicicletas,
     getBicicletaById,
     criarBicicleta,
     atualizarBicicleta,
     removerBicicletaById,
+    integrarNaRede,
+    retirarDaRede,
 }

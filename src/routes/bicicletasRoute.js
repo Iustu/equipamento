@@ -9,7 +9,8 @@ const routesBicicleta = async (fastify) => {
     fastify.post('/bicicleta', bicicletaController.criarBicicleta);
     fastify.delete('/bicicleta/:id', bicicletaController.removerBicicletaById);
     fastify.put('/bicicleta/:id', bicicletaController.atualizarBicicleta);
-
+    fastify.post('/bicicleta/integrarNaRede',bicicletaController.integrarNaRede);
+    fastify.post('/bicicleta/retirarDaRede',bicicletaController.retirarDaRede);
 }
 
 module.exports = routesBicicleta;
