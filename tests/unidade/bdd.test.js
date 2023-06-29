@@ -500,7 +500,6 @@ describe("Testa a remoção de tranca de totem",()=>{
 });
 
 describe("Testa a obtenção de bicicletas do totem",()=>{
-   let array;
    let totem;
    beforeAll(()=>{
       totem = colocaTotem("Teste","Teste");
@@ -532,8 +531,6 @@ describe("Testa o resgitro da exclusao de bicicleta em tranca",()=>{
 });
 
 describe("Testa a comparacao de de exclusao BT",()=>{
-   let array;
-   let totem;
    beforeAll(()=>{
       registraExclusaoBT(1,1,1,"EM_REPARO");
    });
@@ -565,8 +562,6 @@ describe("Testa o resgitro da exclusao de bicicleta em tranca",()=>{
 });
 
 describe("Testa a comparacao de de exclusao TT",()=>{
-   let array;
-   let totem;
    beforeAll(()=>{
       registraExclusaoTT(1,1,"EM_REPARO");
    });
