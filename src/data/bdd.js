@@ -1,3 +1,4 @@
+//Bicicletas
 let bicicletas = [];
 
 function retornaBicicletas(){
@@ -34,6 +35,14 @@ function atualizaBicicleta(indice,marca,modelo,numero,ano,status){
     return bicicletaSelecionada;
 }
 
+function bicicletaStatus(indice,status){
+    const bicicletaSelecionada = bicicletas[indice];
+
+    bicicletaSelecionada.status = status;
+
+    return bicicletaSelecionada;
+}
+
 function deletaBicicleta(indice){
     bicicletas.splice(indice,1);
 }
@@ -59,6 +68,7 @@ function pegaIndiceBicicletaNumero(numero) {
     return -1;
 }
 
+//Trancas
 let trancas = [];
 
 function retornaTrancas(){
@@ -77,18 +87,20 @@ function colocaTranca(localizacao, modelo, anoFabricacao, numero){
         modelo: modelo,
         numero: numero,
         anoFabricacao: anoFabricacao,
+        bicicleta:0,
         status: "nova",
     };
     trancas.push(tranca);
     return tranca;
 }
 
-function atualizaTranca(indice,localizacao,modelo,anoFabricacao,numero,status){
+function atualizaTranca(indice,localizacao,modelo,anoFabricacao,numero,status,bicicleta){
     const trancaSelecionada = trancas[indice];
 
     trancaSelecionada.localizacao = localizacao;
     trancaSelecionada.modelo = modelo;
     trancaSelecionada.anoFabricacao = anoFabricacao;
+    trancaSelecionada.bicicleta = bicicleta;
     trancaSelecionada.numero = numero;
     trancaSelecionada.status = status;
 
@@ -97,6 +109,17 @@ function atualizaTranca(indice,localizacao,modelo,anoFabricacao,numero,status){
 
 function deletaTranca(indice){
     trancas.splice(indice,1);
+}
+
+function trancar(indice,numeroBicicleta){
+    let trancaSelecionada = trancas[indice];
+    trancaSelecionada.status = "OCUPADA";
+    trancaSelecionada.bicicleta = numeroBicicleta;
+}
+function destrancar(indice){
+    let trancaSelecionada = trancas[indice];
+    trancaSelecionada.status = "LIVRE";
+    trancaSelecionada.bicicleta = 0;
 }
 
 function pegaIndiceTrancaId(id) {
@@ -120,6 +143,7 @@ function pegaIndiceTrancaNumero(numero) {
     return -1;
 }
 
+//Totem
 let totens = [];
 
 function retornaTotens(){
@@ -164,28 +188,36 @@ function pegaIndiceTotemId(id) {
     }
     return -1;
 }
-function pegaIndiceTotemNumero(numero) {
-    const len = totens.length;
 
-    for (let i = 0; i < len; i++) {
-        if (totens[i].numero == numero) {
-            return i;
-        }
-    }
-    return -1;
-}
-
+//Inclusao
 let inclusaoBicicletaTranca = [];
-function registraInclusao(numeroTranca, numeroBicicleta){
+function registraInclusao(idTranca, idBicicleta, idFuncionario){
     const newId = inclusaoBicicletaTranca.length+1;
     const inclusao = {
         id: newId,
         dataHora: Date(),
-        numeroBicicleta: numeroBicicleta,
-        numeroTranca: numeroTranca,
+        idBicicleta: numeroBicicleta,
+        idTranca: numeroTranca,
+        idFuncionario: idFuncionario
     };
     inclusaoBicicletaTranca.push(inclusao);
     return inclusao;
+}
+
+//Exclusao
+let exclusaoBicicletaTranca = [];
+function registraExclusao(idTranca, idBicicleta, idFuncionario,acaoRetirada){
+    const newId = exclusaoBicicletaTranca.length+1;
+    const exclusao = {
+        id: newId,
+        dataHora: Date(),
+        idBicicleta: numeroBicicleta,
+        idTranca: numeroTranca,
+        idFuncionario: idFuncionario,
+        acaoRetirada: acaoRetirada,
+    };
+    exclusaoBicicletaTranca.push(exclusao);
+    return exclusao;
 }
 
 module.exports = {
@@ -193,6 +225,7 @@ module.exports = {
     retornaBicicletaIndice,
     colocaBicicleta,
     atualizaBicicleta,
+    bicicletaStatus,
     deletaBicicleta,
     pegaIndiceBicicletaId,
     pegaIndiceBicicletaNumero,
@@ -201,6 +234,8 @@ module.exports = {
     colocaTranca,
     atualizaTranca,
     deletaTranca,
+    trancar,
+    destrancar,
     pegaIndiceTrancaId,
     pegaIndiceTrancaNumero,
     retornaTotens,
@@ -209,7 +244,7 @@ module.exports = {
     atualizaTotem,
     deletaTotem,
     pegaIndiceTotemId,
-    pegaIndiceTotemNumero,
     registraInclusao,
+    registraExclusao,
 }
 

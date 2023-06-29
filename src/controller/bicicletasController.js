@@ -1,6 +1,7 @@
 const {passaNullBicicleta, passaEmptyBicicleta} = require("../utils/validacoes");
-const{pegaIndiceBicicletaId, pegaIndiceBicicletaNumero, retornaBicicletas, retornaBicicletaIndice, colocaBicicleta, atualizaBicicleta, deletaBicicleta,
-    registraInclusao
+const{pegaIndiceBicicletaId, pegaIndiceBicicletaNumero, retornaBicicletas, retornaBicicletaIndice, colocaBicicleta, atualizaBicicleta, deletaBicicleta, registraInclusao, pegaIndiceTrancaId,retornaTrancaIndice, pegaIndiceTrancaNumero, atualizaTranca, trancar, destrancar,
+    bicicletaStatus,
+    registraExclusao
 } = require("../data/bdd");
 
 const getBicicletas = async (request, reply) => {
@@ -92,6 +93,27 @@ const atualizarBicicleta = async(request, reply) => {
     }
 };
 
+const atualizarBicicletaStatus = async(request, reply) => {
+    try {
+        const indice = pegaIndiceBicicletaId(request.params.id);
+
+        if(indice === -1) {
+            reply.status(404);
+            reply.send({message: "Não encontrado"});
+            return;
+        }
+
+        const bicicletaSelecionada = bicicletaStatus(indice, request.params.acao);
+
+        reply.status(200);
+        reply.send({message:"Dados atualizados",bicicleta:bicicletaSelecionada});
+    }
+    catch (error) {
+        console.error(error);
+        reply.status(422).send('Dados inválidos');
+    }
+};
+
 const removerBicicletaById = async(request, reply) => {
     try {
         const indice = pegaIndiceBicicletaId(request.params.id);
@@ -115,32 +137,92 @@ const removerBicicletaById = async(request, reply) => {
 
 const integrarNaRede = async (request, reply) => {
     //validar numero bicicleta
-    const indice = pegaIndiceBicicletaNumero(request.numeroBicicleta);
-    if(indice == -1) {
-        reply.status(202);
+    let indiceBicicleta = pegaIndiceBicicletaId(request.body.idBicicleta);
+    if(indiceBicicleta == -1) {
+        reply.status(422);
         reply.send({message: "Numero bicicleta inválido"});
         return;
     }
-    let bicicleta = retornaBicicletaId(indice);
+
     //validar status bicicleta
+    let bicicleta = retornaBicicletaIndice(indiceBicicleta);
+    if (bicicleta.status != "NOVA" || bicicleta.status != "EM_REPARO"){
+        reply.status(422);
+        reply.send({message:"Estado da bicicleta noggers."});
+        return;
+    }
+    if (bicicleta.status == "EM_REPARO"){
+        // if (request.body.idFuncionario != ){
+        //     reply.status(422);
+        //     reply.status({message: "Quem removeu coloca"});
+        //     return;
+        // }
+    }
 
     //validarTranca
+    let indiceTranca= pegaIndiceTrancaId(request.body.idTranca);
+    if(indiceTranca == -1) {
+        reply.status(422);
+        reply.send({message: "Numero tranca inválido"});
+        return;
+    }
+    let tranca = retornaTrancaIndice(indiceTranca);
+    if (tranca.status != "LIVRE"){
+        reply.status(422);
+        reply.status({message:"Estado da tranca noggers."});
+        return;
+    }
 
     //registrar dados inclusao
-    registraInclusao(request.body.numeroTranca, request.body.numeroBicicleta,);
+    registraInclusao(request.body.idTranca, request.body.idBicicleta,request.body.idFuncionario);
 
     //fechar tranca
-
+    trancar(indiceTranca,bicicleta.numero);
 
     //mudar status para disponivel
+    bicicletaStatus(indiceBicicleta, "DISPONÍVEL");
 
     //enviar email
 
     //voltar mensagem
+    reply.status(200);
+    reply.send({message: "Bicicleta inserida com sucesso"});
 };
 
 const retirarDaRede = async (request, reply) => {
+    //valida número tranca
+    let indiceTranca = pegaIndiceTrancaId(request.body.idTranca);
+    if(indiceTranca == -1) {
+        reply.status(422);
+        reply.send({message: "Numero tranca inválido"});
+        return;
+    }
+    let tranca = retornaTrancaIndice(indiceTranca);
+    if (tranca.status != "LIVRE"){
+        reply.status(422);
+        reply.status({message:"Estado da tranca noggers."});
+        return;
+    }
 
+    //abre a tranca
+    destrancar(indiceTranca);
+
+    //bicicleta
+    let indiceBicicleta = pegaIndiceBicicletaId(request.body.idBicicleta);
+    if(indiceBicicleta == -1) {
+        reply.status(422);
+        reply.send({message: "Numero tranca inválido"});
+        return;
+    }
+    bicicletaStatus(indiceBicicleta,request.body.status);
+
+    //retirada
+    registraExclusao(request.body.idTranca,request.body.idBicicleta,request.body.idFuncionario,request.body.status);
+
+    //enviar Mensagem
+
+    reply.status(200);
+    reply.send({messagem:"Bicicleta removida!"});
 };
 
 module.exports = {
@@ -148,6 +230,7 @@ module.exports = {
     getBicicletaById,
     criarBicicleta,
     atualizarBicicleta,
+    atualizarBicicletaStatus,
     removerBicicletaById,
     integrarNaRede,
     retirarDaRede,

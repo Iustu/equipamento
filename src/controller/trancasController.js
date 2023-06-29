@@ -1,5 +1,9 @@
 const {passaNullTranca, passaEmptyTranca} = require("../utils/validacoes");
-const{pegaIndiceTrancaId, pegaIndiceTrancaNumero, retornaTrancas, retornaTrancaIndice, colocaTranca, atualizaTranca, deletaTranca} = require("../data/bdd");
+const{pegaIndiceTrancaId, pegaIndiceTrancaNumero, retornaTrancas, retornaTrancaIndice, colocaTranca, atualizaTranca, deletaTranca,
+    trancar,
+    destrancar
+} = require("../data/bdd");
+const repl = require("repl");
 
 const getTrancas = async (request, reply) => {
     return reply.status(200).send(retornaTrancas());
@@ -79,7 +83,7 @@ const atualizarTranca = async(request, reply) => {
             return;
         }
 
-        const trancaSelecionada = atualizaTranca(indice,request.body.localizacao,request.body.modelo,request.body.anoFabricacao,request.body.numero,request.body.status);
+        const trancaSelecionada = atualizaTranca(indice,request.body.localizacao,request.body.modelo,request.body.anoFabricacao,request.body.numero,request.body.status,request.body.bicicleta);
 
         reply.status(200);
         reply.send({message:"Dados atualizados",tranca:trancaSelecionada});
@@ -110,6 +114,34 @@ const removerTrancaById = async(request, reply) => {
     }
 };
 
+const trancarEndpoint = async(request, reply) => {
+    try {
+        let indice = pegaIndiceTrancaId(request.params.id);
+        if (indice == -1){
+            reply.status(404);
+            reply.send({message:"Não encontrado"});
+        }
+        trancar(indice,request.body.numeroBicicleta);
+    }
+    catch (error){
+        console.error(error);
+        reply.status(422).send('inválido');
+    }
+};
+const destrancarEndpoint = async(request, reply) => {
+    try {
+        let indice = pegaIndiceTrancaId(request.params.id);
+        if (indice == -1){
+            reply.status(404);
+            reply.send({message:"Não encontrado"});
+        }
+        destrancar(indice);
+    }
+    catch (error){
+        console.error(error);
+        reply.status(422).send('inválido');
+    }
+};
 
 module.exports = {
     getTrancas,
