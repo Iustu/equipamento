@@ -1,4 +1,6 @@
+//
 //Bicicletas
+//
 let bicicletas = [];
 
 function retornaBicicletas(){
@@ -225,7 +227,6 @@ function puxaBicicletaTotem(indiceTotem){
 
 function pegaIndiceTotemId(id) {
     const len = totens.length;
-
     for (let i = 0; i < len; i++) {
         if (totens[i].id == id) {
             return i;
@@ -268,9 +269,7 @@ function comparaExclusaoBT(idFuncionario,idBicicleta){
     const len = exclusaoBicicletaTranca.length;
 
     for (let i = len-1; i >= 0; i--) {
-        console.log(idBicicleta,idFuncionario);
-        console.log(exclusaoBicicletaTranca[i].idBicicleta,exclusaoBicicletaTranca[i].idFuncionario);
-        console.log(exclusaoBicicletaTranca[i].idBicicleta == idBicicleta && exclusaoBicicletaTranca[i].idFuncionario==idFuncionario);
+
         if (exclusaoBicicletaTranca[i].idBicicleta == idBicicleta && exclusaoBicicletaTranca[i].idFuncionario==idFuncionario) {
             return true;
         }
