@@ -1,5 +1,7 @@
 const {passaNullTotem, passaEmptyTotem} = require("../utils/validacoes");
-const {retornaTotens, pegaIndiceTotemId, retornaTotemIndice, colocaTotem, atualizaTotem, deletaTotem} = require("../data/bdd");
+const {retornaTotens, pegaIndiceTotemId, retornaTotemIndice, colocaTotem, atualizaTotem, deletaTotem,
+    puxaBicicletaTotem
+} = require("../data/bdd");
 
 
 const getTotens = async (request, reply) => {
@@ -112,10 +114,53 @@ const removerTotemById = async(request, reply) => {
     }
 };
 
+const retornaTranca = async (request,reply) =>{
+    try{
+        const indice = pegaIndiceTotemId(request.params.id);
+
+        if (indice == -1) {
+            reply.status(404);
+            reply.send({message: "Não encontrado"});
+            return;
+        }
+
+        let totem = retornaTotemIndice(indice);
+
+        reply.status(200);
+        reply.send(totem.trancas);
+    }
+    catch (error) {
+        console.error(error);
+        reply.status(422).send('Dado inválidos');
+    }
+}
+const retornaBicicleta = async (request,reply) =>{
+    try{
+        const indice = pegaIndiceTotemId(request.params.id);
+
+        if (indice == -1) {
+            reply.status(404);
+            reply.send({message: "Não encontrado"});
+            return;
+        }
+
+        let bicicletas = puxaBicicletaTotem(indice);
+
+        reply.status(200);
+        reply.send(bicicletas);
+    }
+    catch (error) {
+        console.error(error);
+        reply.status(422).send('Dado inválidos');
+    }
+}
+
 module.exports = {
     getTotens,
     getTotemById,
     criarTotem,
     atualizarTotem,
     removerTotemById,
+    retornaTranca,
+    retornaBicicleta,
 }

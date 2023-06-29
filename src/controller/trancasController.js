@@ -127,10 +127,16 @@ const atualizarTrancaStatus = async(request, reply) => {
 const removerTrancaById = async(request, reply) => {
     try {
         const indice = pegaIndiceTrancaId(request.params.id);
-
         if(indice == -1) {
             reply.status(404)
             reply.send({message: "Não encontrado"});
+            return;
+        }
+
+        const tranca = retornaTrancaIndice(indice);
+        if (tranca.status!="APOSENTADA"){
+            reply.status(422);
+            reply.status({message: "SO DELETA APOSENTADA"});
             return;
         }
 
@@ -151,6 +157,12 @@ const trancarEndpoint = async(request, reply) => {
             reply.status(404);
             reply.send({message:"Não encontrado"});
         }
+        const indiceBicicleta = pegaIndiceTrancaNumero(request.body.numeroBicicleta);
+        if (indiceBicicleta == -1){
+            reply.status(404);
+            reply.send({message:"Bicicleta não encontrado"});
+        }
+
         trancar(indice,request.body.numeroBicicleta);
     }
     catch (error){
@@ -175,37 +187,40 @@ const destrancarEndpoint = async(request, reply) => {
 
 const integrarNaRede = async (request,reply) => {
     try {
-        let indiceTotem = pegaIndiceTotemId(request.body.totemId);
+        let indiceTotem = pegaIndiceTotemId(request.body.idTotem);
         if (indiceTotem == -1){
             reply.status(404);
             reply.send({message:"Não encontrado"});
+            return;
         }
         //let totem = retornaTotemIndice(indiceTotem);
 
-        let indice = pegaIndiceTrancaNumero(request.body.trancaNumero);
+        let indice = pegaIndiceTrancaNumero(request.body.numeroTranca);
         if (indice == -1){
             reply.status(404);
             reply.send({message:"Não encontrado"});
+            return;
         }
         let tranca = retornaTrancaIndice(indice);
-
+        let teste = tranca.status;
         //REPARO
-        if (tranca.status=="EM_REPARO"){
+        if (teste=="EM_REPARO"){
             if (comparaExclusaoTT(request.body.idFuncionario,request.body.numeroTranca)==false){
                 reply.status(422);
                 reply.send({message:"QUEM TIRA BOTA"});
+                return;
             }
         }
 
 
         //atrelar tranca no totem;
-        colocaTrancaTotem(indiceTotem,request.body.trancaNumero);
+        colocaTrancaTotem(indiceTotem,request.body.numeroTranca);
 
         //registrar dados inclusao
         registraInclusaoTT(request.body.numeroTranca,request.body.idFuncionario);
 
         //alterar tranca
-        trancaStatus(indice,"DISPONÍVEL");
+        trancaStatus(indice,"LIVRE");
 
         //mensagem
 
@@ -219,16 +234,18 @@ const integrarNaRede = async (request,reply) => {
 };
 const removerDaRede = async (request,reply) => {
     try {
-        let indiceTotem = pegaIndiceTotemId(request.body.totemId);
+        let indiceTotem = pegaIndiceTotemId(request.body.idTotem);
         if (indiceTotem == -1){
             reply.status(404);
             reply.send({message:"Não encontrado"});
+            return;
         }
 
-        let indice = pegaIndiceTrancaId(request.params.id);
+        let indice = pegaIndiceTrancaNumero(request.body.numeroTranca);
         if (indice == -1){
             reply.status(404);
             reply.send({message:"Não encontrado"});
+            return;
         }
         //REPARO
 

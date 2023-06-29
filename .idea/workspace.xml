@@ -7,9 +7,10 @@
     <list default="true" id="8a4b7ab1-fe31-47f9-931b-db6da5494ce9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/bicicletasController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/bicicletasController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/totensController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/totensController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/trancasController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/trancasController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/bdd.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/bdd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/trancasRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/trancasRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/totensRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/totensRoute.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,6 +165,7 @@
       <workItem from="1687986932457" duration="17000" />
       <workItem from="1687988518466" duration="11900000" />
       <workItem from="1688001899778" duration="4558000" />
+      <workItem from="1688033139092" duration="10815000" />
     </task>
     <servers />
   </component>

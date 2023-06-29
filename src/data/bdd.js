@@ -17,7 +17,7 @@ function colocaBicicleta(marca, modelo, ano, numero){
             modelo: modelo,
             numero: numero,
             ano: ano,
-            status: "nova",
+            status: "NOVA",
         };
     bicicletas.push(bike);
     return bike;
@@ -90,7 +90,7 @@ function colocaTranca(localizacao, modelo, anoFabricacao, numero){
         numero: numero,
         anoFabricacao: anoFabricacao,
         bicicleta:0,
-        status: "nova",
+        status: "NOVA",
     };
     trancas.push(tranca);
     return tranca;
@@ -110,7 +110,7 @@ function atualizaTranca(indice,localizacao,modelo,anoFabricacao,numero,status,bi
 }
 
 function trancaStatus(indice,status){
-    const trancaSelecionada = tranca[indice];
+    const trancaSelecionada = trancas[indice];
 
     trancaSelecionada.status = status;
 
@@ -209,6 +209,20 @@ function removeTrancaTotem(indiceTotem, numeroTranca){
     return -1;
 }
 
+function puxaBicicletaTotem(indiceTotem){
+    let totemSelecionado = totens[indiceTotem];
+    const len = totemSelecionado.trancas.length;
+    let bicicletas = [];
+
+    for (let i = 0; i < len; i++) {
+        let tranca = retornaTrancaIndice(pegaIndiceTrancaNumero(totemSelecionado.trancas[i]));
+        if (tranca.bicicleta != 0 ) {
+            bicicletas.push(tranca.bicicleta);
+        }
+    }
+    return bicicletas;
+}
+
 function pegaIndiceTotemId(id) {
     const len = totens.length;
 
@@ -227,8 +241,8 @@ function registraInclusaoBT(idTranca, idBicicleta, idFuncionario){
     const inclusao = {
         id: newId,
         dataHora: Date(),
-        idBicicleta: numeroBicicleta,
-        idTranca: numeroTranca,
+        idBicicleta: idBicicleta,
+        idTranca: idTranca,
         idFuncionario: idFuncionario
     };
     inclusaoBicicletaTranca.push(inclusao);
@@ -242,19 +256,22 @@ function registraExclusaoBT(idTranca, idBicicleta, idFuncionario,acaoRetirada){
     const exclusao = {
         id: newId,
         dataHora: Date(),
-        idBicicleta: numeroBicicleta,
-        idTranca: numeroTranca,
+        idBicicleta: idBicicleta,
+        idTranca: idTranca,
         idFuncionario: idFuncionario,
         acaoRetirada: acaoRetirada,
     };
     exclusaoBicicletaTranca.push(exclusao);
     return exclusao;
 }
-function comparaExclusaoBT(idFuncionario,numeroBicicleta){
+function comparaExclusaoBT(idFuncionario,idBicicleta){
     const len = exclusaoBicicletaTranca.length;
 
-    for (let i = len; i > 0; i--) {
-        if (exclusaoBicicletaTranca[i].numeroBicicleta == numeroBicicleta && exclusaoTrancaTotem.idFuncionario==idFuncionario) {
+    for (let i = len-1; i >= 0; i--) {
+        console.log(idBicicleta,idFuncionario);
+        console.log(exclusaoBicicletaTranca[i].idBicicleta,exclusaoBicicletaTranca[i].idFuncionario);
+        console.log(exclusaoBicicletaTranca[i].idBicicleta == idBicicleta && exclusaoBicicletaTranca[i].idFuncionario==idFuncionario);
+        if (exclusaoBicicletaTranca[i].idBicicleta == idBicicleta && exclusaoBicicletaTranca[i].idFuncionario==idFuncionario) {
             return true;
         }
     }
@@ -271,6 +288,7 @@ function registraInclusaoTT(numeroTranca, idFuncionario){
         idFuncionario: idFuncionario
     };
     inclusaoTrancaTotem.push(inclusao);
+
     return inclusao;
 }
 
@@ -291,8 +309,9 @@ function registraExclusaoTT(numeroTranca, idFuncionario,acaoRetirada){
 function comparaExclusaoTT(idFuncionario,numeroTranca){
     const len = exclusaoTrancaTotem.length;
 
-    for (let i = len; i > 0; i--) {
-        if (exclusaoTrancaTotem[i].numeroTranca == numeroTranca && exclusaoTrancaTotem.idFuncionario==idFuncionario) {
+    for (let i = len-1; i >= 0; i--) {
+
+        if (exclusaoTrancaTotem[i].numeroTranca == numeroTranca && exclusaoTrancaTotem[i].idFuncionario==idFuncionario) {
             return true;
         }
     }
@@ -324,6 +343,7 @@ module.exports = {
     atualizaTotem,
     deletaTotem,
     pegaIndiceTotemId,
+    puxaBicicletaTotem,
     registraInclusaoBT,
     registraExclusaoBT,
     comparaExclusaoBT,
