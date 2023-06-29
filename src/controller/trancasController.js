@@ -193,7 +193,6 @@ const integrarNaRede = async (request,reply) => {
             reply.send({message:"Não encontrado"});
             return;
         }
-        //let totem = retornaTotemIndice(indiceTotem);
 
         let indice = pegaIndiceTrancaNumero(request.body.numeroTranca);
         if (indice == -1){
@@ -205,7 +204,7 @@ const integrarNaRede = async (request,reply) => {
         let teste = tranca.status;
         //REPARO
         if (teste=="EM_REPARO"){
-            if (comparaExclusaoTT(request.body.idFuncionario,request.body.numeroTranca)==false){
+            if (!comparaExclusaoTT(request.body.idFuncionario,request.body.numeroTranca)){
                 reply.status(422);
                 reply.send({message:"QUEM TIRA BOTA"});
                 return;
