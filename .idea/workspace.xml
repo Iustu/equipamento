@@ -9,7 +9,7 @@
       <change beforePath="$PROJECT_DIR$/src/controller/bicicletasController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/bicicletasController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/trancasController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/trancasController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/bdd.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/bdd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/bicicletasRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/bicicletasRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/trancasRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/trancasRoute.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +162,8 @@
       <workItem from="1687801514451" duration="5987000" />
       <workItem from="1687956150227" duration="24172000" />
       <workItem from="1687986932457" duration="17000" />
-      <workItem from="1687988518466" duration="11391000" />
+      <workItem from="1687988518466" duration="11900000" />
+      <workItem from="1688001899778" duration="4558000" />
     </task>
     <servers />
   </component>

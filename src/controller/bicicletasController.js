@@ -1,7 +1,7 @@
 const {passaNullBicicleta, passaEmptyBicicleta} = require("../utils/validacoes");
-const{pegaIndiceBicicletaId, pegaIndiceBicicletaNumero, retornaBicicletas, retornaBicicletaIndice, colocaBicicleta, atualizaBicicleta, deletaBicicleta, registraInclusao, pegaIndiceTrancaId,retornaTrancaIndice, pegaIndiceTrancaNumero, atualizaTranca, trancar, destrancar,
-    bicicletaStatus,
-    registraExclusao
+const{pegaIndiceBicicletaId, retornaBicicletas,retornaBicicletaIndice,colocaBicicleta,atualizaBicicleta,deletaBicicleta,pegaIndiceTrancaId,retornaTrancaIndice,trancar,destrancar,bicicletaStatus,registraExclusaoBT,registraInclusaoBT,
+    comparaExclusaoTT,
+    comparaExclusaoBT
 } = require("../data/bdd");
 
 const getBicicletas = async (request, reply) => {
@@ -146,17 +146,17 @@ const integrarNaRede = async (request, reply) => {
 
     //validar status bicicleta
     let bicicleta = retornaBicicletaIndice(indiceBicicleta);
-    if (bicicleta.status != "NOVA" || bicicleta.status != "EM_REPARO"){
+    if (bicicleta.status != "NOVA" && bicicleta.status != "EM_REPARO"){
         reply.status(422);
         reply.send({message:"Estado da bicicleta noggers."});
         return;
     }
-    if (bicicleta.status == "EM_REPARO"){
-        // if (request.body.idFuncionario != ){
-        //     reply.status(422);
-        //     reply.status({message: "Quem removeu coloca"});
-        //     return;
-        // }
+    if (bicicleta.status=="EM_REPARO"){
+        if (comparaExclusaoBT(request.body.idFuncionario,request.body.numeroBicicleta)==false){
+            reply.status(422);
+            reply.send({message:"QUEM TIRA BOTA"});
+            return;
+        }
     }
 
     //validarTranca
@@ -174,7 +174,7 @@ const integrarNaRede = async (request, reply) => {
     }
 
     //registrar dados inclusao
-    registraInclusao(request.body.idTranca, request.body.idBicicleta,request.body.idFuncionario);
+    registraInclusaoBT(request.body.idTranca, request.body.idBicicleta,request.body.idFuncionario);
 
     //fechar tranca
     trancar(indiceTranca,bicicleta.numero);
@@ -217,7 +217,7 @@ const retirarDaRede = async (request, reply) => {
     bicicletaStatus(indiceBicicleta,request.body.status);
 
     //retirada
-    registraExclusao(request.body.idTranca,request.body.idBicicleta,request.body.idFuncionario,request.body.status);
+    registraExclusaoBT(request.body.idTranca,request.body.idBicicleta,request.body.idFuncionario,request.body.status);
 
     //enviar Mensagem
 

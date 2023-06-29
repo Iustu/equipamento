@@ -1,9 +1,18 @@
 const {passaNullTranca, passaEmptyTranca} = require("../utils/validacoes");
 const{pegaIndiceTrancaId, pegaIndiceTrancaNumero, retornaTrancas, retornaTrancaIndice, colocaTranca, atualizaTranca, deletaTranca,
     trancar,
-    destrancar
+    destrancar,
+    registraInclusaoTT,
+    trancaStatus,
+    registraExclusaoTT,
+    pegaIndiceTotemId,
+    retornaTotemIndice,
+    colocaTrancaTotem,
+    removeTrancaTotem,
+    comparaExclusaoTT,
+    pegaIndiceBicicletaId,
+    bicicletaStatus
 } = require("../data/bdd");
-const repl = require("repl");
 
 const getTrancas = async (request, reply) => {
     return reply.status(200).send(retornaTrancas());
@@ -94,6 +103,27 @@ const atualizarTranca = async(request, reply) => {
     }
 };
 
+const atualizarTrancaStatus = async(request, reply) => {
+    try {
+        const indice = pegaIndiceTrancaId(request.params.id);
+
+        if(indice === -1) {
+            reply.status(404);
+            reply.send({message: "Não encontrado"});
+            return;
+        }
+
+        const trancaSelecionada = trancaStatus(indice, request.params.acao);
+
+        reply.status(200);
+        reply.send({message:"Dados atualizados",tranca:trancaSelecionada});
+    }
+    catch (error) {
+        console.error(error);
+        reply.status(422).send('Dados inválidos');
+    }
+};
+
 const removerTrancaById = async(request, reply) => {
     try {
         const indice = pegaIndiceTrancaId(request.params.id);
@@ -143,10 +173,93 @@ const destrancarEndpoint = async(request, reply) => {
     }
 };
 
+const integrarNaRede = async (request,reply) => {
+    try {
+        let indiceTotem = pegaIndiceTotemId(request.body.totemId);
+        if (indiceTotem == -1){
+            reply.status(404);
+            reply.send({message:"Não encontrado"});
+        }
+        //let totem = retornaTotemIndice(indiceTotem);
+
+        let indice = pegaIndiceTrancaNumero(request.body.trancaNumero);
+        if (indice == -1){
+            reply.status(404);
+            reply.send({message:"Não encontrado"});
+        }
+        let tranca = retornaTrancaIndice(indice);
+
+        //REPARO
+        if (tranca.status=="EM_REPARO"){
+            if (comparaExclusaoTT(request.body.idFuncionario,request.body.numeroTranca)==false){
+                reply.status(422);
+                reply.send({message:"QUEM TIRA BOTA"});
+            }
+        }
+
+
+        //atrelar tranca no totem;
+        colocaTrancaTotem(indiceTotem,request.body.trancaNumero);
+
+        //registrar dados inclusao
+        registraInclusaoTT(request.body.numeroTranca,request.body.idFuncionario);
+
+        //alterar tranca
+        trancaStatus(indice,"DISPONÍVEL");
+
+        //mensagem
+
+        reply.status(200);
+        reply.send({message: "TRANCA INCLUIDA"});
+    }
+    catch (error){
+        console.error(error);
+        reply.status(422).send('inválido');
+    }
+};
+const removerDaRede = async (request,reply) => {
+    try {
+        let indiceTotem = pegaIndiceTotemId(request.body.totemId);
+        if (indiceTotem == -1){
+            reply.status(404);
+            reply.send({message:"Não encontrado"});
+        }
+
+        let indice = pegaIndiceTrancaId(request.params.id);
+        if (indice == -1){
+            reply.status(404);
+            reply.send({message:"Não encontrado"});
+        }
+        //REPARO
+
+        removeTrancaTotem(indiceTotem,request.body.numeroTranca);
+
+        //registrar dados exclusão
+        registraExclusaoTT(request.body.numeroTranca,request.body.idFuncionario,request.body.status);
+
+        //alterar tranca
+        trancaStatus(indice,request.body.status);
+
+        //mensagem
+
+        reply.status(200);
+        reply.send({message: "TRANCA REMOVIDA"});
+
+    }catch (error){
+        console.error(error);
+        reply.status(422).send('inválido');
+    }
+};
+
 module.exports = {
     getTrancas,
     getTrancaById,
     criarTranca,
     atualizarTranca,
+    atualizarTrancaStatus,
     removerTrancaById,
+    trancarEndpoint,
+    destrancarEndpoint,
+    integrarNaRede,
+    removerDaRede,
 }

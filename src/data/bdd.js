@@ -68,7 +68,9 @@ function pegaIndiceBicicletaNumero(numero) {
     return -1;
 }
 
+//
 //Trancas
+//
 let trancas = [];
 
 function retornaTrancas(){
@@ -102,6 +104,14 @@ function atualizaTranca(indice,localizacao,modelo,anoFabricacao,numero,status,bi
     trancaSelecionada.anoFabricacao = anoFabricacao;
     trancaSelecionada.bicicleta = bicicleta;
     trancaSelecionada.numero = numero;
+    trancaSelecionada.status = status;
+
+    return trancaSelecionada;
+}
+
+function trancaStatus(indice,status){
+    const trancaSelecionada = tranca[indice];
+
     trancaSelecionada.status = status;
 
     return trancaSelecionada;
@@ -143,7 +153,9 @@ function pegaIndiceTrancaNumero(numero) {
     return -1;
 }
 
+//
 //Totem
+//
 let totens = [];
 
 function retornaTotens(){
@@ -159,7 +171,8 @@ function colocaTotem(localizacao, descricao){
     const totem = {
         id: newId,
         localizacao: localizacao,
-        descricao: descricao
+        descricao: descricao,
+        trancas:[],
     };
     totens.push(totem);
     return totem;
@@ -178,6 +191,24 @@ function deletaTotem(indice){
     totens.splice(indice,1);
 }
 
+function colocaTrancaTotem(indiceTotem,numeroTranca){
+    let totemSelecionado = totens[indiceTotem];
+    totemSelecionado.trancas.push(numeroTranca);
+}
+
+function removeTrancaTotem(indiceTotem, numeroTranca){
+    let totemSelecionado = totens[indiceTotem];
+    const len = totemSelecionado.trancas.length;
+
+    for (let i = 0; i < len; i++) {
+        if (totemSelecionado.trancas[i] == numeroTranca) {
+            totemSelecionado.trancas.splice(i,1);
+            return;
+        }
+    }
+    return -1;
+}
+
 function pegaIndiceTotemId(id) {
     const len = totens.length;
 
@@ -191,7 +222,7 @@ function pegaIndiceTotemId(id) {
 
 //Inclusao
 let inclusaoBicicletaTranca = [];
-function registraInclusao(idTranca, idBicicleta, idFuncionario){
+function registraInclusaoBT(idTranca, idBicicleta, idFuncionario){
     const newId = inclusaoBicicletaTranca.length+1;
     const inclusao = {
         id: newId,
@@ -206,7 +237,7 @@ function registraInclusao(idTranca, idBicicleta, idFuncionario){
 
 //Exclusao
 let exclusaoBicicletaTranca = [];
-function registraExclusao(idTranca, idBicicleta, idFuncionario,acaoRetirada){
+function registraExclusaoBT(idTranca, idBicicleta, idFuncionario,acaoRetirada){
     const newId = exclusaoBicicletaTranca.length+1;
     const exclusao = {
         id: newId,
@@ -218,6 +249,54 @@ function registraExclusao(idTranca, idBicicleta, idFuncionario,acaoRetirada){
     };
     exclusaoBicicletaTranca.push(exclusao);
     return exclusao;
+}
+function comparaExclusaoBT(idFuncionario,numeroBicicleta){
+    const len = exclusaoBicicletaTranca.length;
+
+    for (let i = len; i > 0; i--) {
+        if (exclusaoBicicletaTranca[i].numeroBicicleta == numeroBicicleta && exclusaoTrancaTotem.idFuncionario==idFuncionario) {
+            return true;
+        }
+    }
+    return false;
+}
+
+let inclusaoTrancaTotem = [];
+function registraInclusaoTT(numeroTranca, idFuncionario){
+    const newId = inclusaoTrancaTotem.length+1;
+    const inclusao = {
+        id: newId,
+        dataHora: Date(),
+        numeroTranca: numeroTranca,
+        idFuncionario: idFuncionario
+    };
+    inclusaoTrancaTotem.push(inclusao);
+    return inclusao;
+}
+
+//Exclusao
+let exclusaoTrancaTotem = [];
+function registraExclusaoTT(numeroTranca, idFuncionario,acaoRetirada){
+    const newId = exclusaoTrancaTotem.length+1;
+    const exclusao = {
+        id: newId,
+        dataHora: Date(),
+        numeroTranca: numeroTranca,
+        idFuncionario: idFuncionario,
+        acaoRetirada: acaoRetirada,
+    };
+    exclusaoTrancaTotem.push(exclusao);
+    return exclusao;
+}
+function comparaExclusaoTT(idFuncionario,numeroTranca){
+    const len = exclusaoTrancaTotem.length;
+
+    for (let i = len; i > 0; i--) {
+        if (exclusaoTrancaTotem[i].numeroTranca == numeroTranca && exclusaoTrancaTotem.idFuncionario==idFuncionario) {
+            return true;
+        }
+    }
+    return false;
 }
 
 module.exports = {
@@ -233,6 +312,7 @@ module.exports = {
     retornaTrancaIndice,
     colocaTranca,
     atualizaTranca,
+    trancaStatus,
     deletaTranca,
     trancar,
     destrancar,
@@ -244,7 +324,13 @@ module.exports = {
     atualizaTotem,
     deletaTotem,
     pegaIndiceTotemId,
-    registraInclusao,
-    registraExclusao,
+    registraInclusaoBT,
+    registraExclusaoBT,
+    comparaExclusaoBT,
+    registraInclusaoTT,
+    registraExclusaoTT,
+    comparaExclusaoTT,
+    colocaTrancaTotem,
+    removeTrancaTotem,
 }
 
