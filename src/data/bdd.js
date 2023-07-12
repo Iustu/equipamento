@@ -78,7 +78,13 @@ function pegaIndiceBicicletaNumero(numero) {
 //
 //Trancas
 //
-let trancas = [];
+let trancas = [{id: 1,
+    localizacao: "Rua da tranca",
+    modelo: "Tranca bem firme",
+    numero: 2000,
+    anoFabricacao: 2019,
+    bicicleta:0,
+    status: "NOVA"},];
 
 function retornaTrancas(){
     return trancas;
@@ -163,7 +169,10 @@ function pegaIndiceTrancaNumero(numero) {
 //
 //Totem
 //
-let totens = [];
+let totens = [{id: 1,
+    localizacao: "Teste",
+    descricao: "Teste",
+    trancas: [2000,]},];
 
 function retornaTotens(){
     return totens;
