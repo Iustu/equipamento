@@ -1,7 +1,12 @@
 //
 //Bicicletas
 //
-let bicicletas = [];
+let bicicletas = [{id: 1,
+    marca: "Caloi",
+    modelo: "Caloteira",
+    numero: 2000,
+    ano: 2020,
+    status: "nova"},];
 
 function retornaBicicletas(){
     return bicicletas;
