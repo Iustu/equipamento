@@ -157,13 +157,13 @@ const trancarEndpoint = async(request, reply) => {
             reply.status(404);
             reply.send({message:"Não encontrado"});
         }
-        const indiceBicicleta = pegaIndiceTrancaNumero(request.body.numeroBicicleta);
+        const indiceBicicleta = pegaIndiceBicicletaId(request.body.idBicicleta)
         if (indiceBicicleta == -1){
             reply.status(404);
             reply.send({message:"Bicicleta não encontrado"});
         }
 
-        trancar(indice,request.body.numeroBicicleta);
+        trancar(indice,request.body.idBicicleta);
     }
     catch (error){
         console.error(error);
