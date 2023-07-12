@@ -152,8 +152,8 @@ const removerTrancaById = async(request, reply) => {
 
 const trancarEndpoint = async(request, reply) => {
     try {
-        let indice = pegaIndiceTrancaId(request.params.id);
-        if (indice == -1){
+        let indiceTranca = pegaIndiceTrancaId(request.params.id);
+        if (indiceTranca == -1){
             reply.status(404);
             reply.send({message:"Não encontrado"});
         }
@@ -163,21 +163,28 @@ const trancarEndpoint = async(request, reply) => {
             reply.send({message:"Bicicleta não encontrado"});
         }
 
-        trancar(indice,request.body.idBicicleta);
+        trancar(indiceTranca,indiceBicicleta);
     }
     catch (error){
         console.error(error);
         reply.status(422).send('inválido');
     }
 };
+
+//SINUCA DE BICO
 const destrancarEndpoint = async(request, reply) => {
     try {
-        let indice = pegaIndiceTrancaId(request.params.id);
-        if (indice == -1){
+        let indiceTranca = pegaIndiceTrancaId(request.params.id);
+        if (indiceTranca == -1){
             reply.status(404);
             reply.send({message:"Não encontrado"});
         }
-        destrancar(indice);
+        const indiceBicicleta = pegaIndiceBicicletaId(request.body.idBicicleta)
+        if (indiceBicicleta == -1){
+            reply.status(404);
+            reply.send({message:"Bicicleta não encontrado"});
+        }
+        destrancar(indiceTranca);
     }
     catch (error){
         console.error(error);

@@ -134,13 +134,15 @@ function deletaTranca(indice){
     trancas.splice(indice,1);
 }
 
-function trancar(indice,numeroBicicleta){
-    let trancaSelecionada = trancas[indice];
+function trancar(indiceTranca,indiceBicicleta){
+    let trancaSelecionada = trancas[indiceTranca];
+    let bicicletaSelecionada = bicicletas[indiceBicicleta];
     trancaSelecionada.status = "OCUPADA";
-    trancaSelecionada.bicicleta = numeroBicicleta;
+    trancaSelecionada.bicicleta = bicicletaSelecionada.numero;
+    bicicletaSelecionada.status = "LIVRE"
 }
-function destrancar(indice){
-    let trancaSelecionada = trancas[indice];
+function destrancar(indiceTranca){
+    let trancaSelecionada = trancas[indiceTranca];
     trancaSelecionada.status = "LIVRE";
     trancaSelecionada.bicicleta = 0;
 }
