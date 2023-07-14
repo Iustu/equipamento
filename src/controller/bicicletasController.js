@@ -3,6 +3,8 @@ const{pegaIndiceBicicletaId, retornaBicicletas,retornaBicicletaIndice,colocaBici
     comparaExclusaoBT
 } = require("../data/bdd");
 const {retornaBicicleta} = require("./totensController");
+const {enviarEmail} = require("../apis/enviarEmailApi");
+const {getFuncionario} = require("../apis/funcionarioApi");
 
 const getBicicletas = async (request, reply) => {
     return reply.status(200).send(retornaBicicletas());
@@ -182,7 +184,7 @@ const integrarNaRede = async (request, reply) => {
         }
 
         //registrar dados inclusao
-        registraInclusaoBT(request.body.idTranca, request.body.idBicicleta, request.body.idFuncionario);
+        const dadoInclusao = registraInclusaoBT(request.body.idTranca, request.body.idBicicleta, request.body.idFuncionario);
 
         //fechar tranca
         trancar(indiceTranca, bicicleta.numero);
@@ -191,6 +193,15 @@ const integrarNaRede = async (request, reply) => {
         bicicletaStatus(indiceBicicleta, "DISPONÍVEL");
 
         //enviar email
+        const funcionario = await getFuncionario(idFuncionario);
+        if(funcionario === undefined){
+            return reply.status(404).send("Funcionario não encontrado.");
+        }
+
+        const resultadoEnvioEmail = await enviarEmail(funcionario.email, "Bicicletário System - Inclusao Bicicleta", "Cadastro realizado."  + JSON.stringify(dadoInclusao));
+        if (resultadoEnvioEmail.status !== 200) {
+            return reply.status(resultadoEnvioEmail.status).send(resultadoEnvioEmail.data + ". Email não enviado");
+        }
 
         //voltar mensagem
         reply.status(200);
