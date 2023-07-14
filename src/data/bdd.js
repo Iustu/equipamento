@@ -6,7 +6,7 @@ let bicicletas = [{id: 1,
     modelo: "Caloteira",
     numero: 2000,
     ano: 2020,
-    status: "nova"},];
+    status: "NOVA"},];
 
 function retornaBicicletas(){
     return bicicletas;

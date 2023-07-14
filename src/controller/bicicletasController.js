@@ -197,7 +197,6 @@ const integrarNaRede = async (request, reply) => {
         if(funcionario === undefined){
             return reply.status(404).send("Funcionario não encontrado.");
         }
-
         const resultadoEnvioEmail = await enviarEmail(funcionario.email, "Bicicletário System - Inclusao Bicicleta", "Cadastro realizado."  + JSON.stringify(dadoInclusao));
         if (resultadoEnvioEmail.status !== 200) {
             return reply.status(resultadoEnvioEmail.status).send(resultadoEnvioEmail.data + ". Email não enviado");
