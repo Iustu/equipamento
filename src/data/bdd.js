@@ -137,6 +137,7 @@ function deletaTranca(indice){
 function trancar(indiceTranca,indiceBicicleta){
     let trancaSelecionada = trancas[indiceTranca];
     let bicicletaSelecionada = bicicletas[indiceBicicleta];
+    console.log("BDD LOG",bicicletaSelecionada);
     trancaSelecionada.status = "OCUPADA";
     trancaSelecionada.bicicleta = bicicletaSelecionada.numero;
     bicicletaSelecionada.status = "LIVRE"
@@ -174,7 +175,7 @@ function pegaIndiceTrancaNumero(numero) {
 let totens = [{id: 1,
     localizacao: "Teste",
     descricao: "Teste",
-    trancas: [2000,]},];
+    trancas: []},];
 
 function retornaTotens(){
     return totens;

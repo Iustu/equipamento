@@ -158,6 +158,7 @@ const integrarNaRede = async (request, reply) => {
         if (bicicleta.status !== "NOVA" && bicicleta.status !== "EM_REPARO") {
             reply.status(422);
             reply.send({message: "Estado da bicicleta noggers."});
+            console.log("LOG DE VALIDACAO INTEGRAÇÃO bicicleta",bicicleta);
             return;
         }
         if (bicicleta.status == "EM_REPARO") {
@@ -187,13 +188,13 @@ const integrarNaRede = async (request, reply) => {
         const dadoInclusao = registraInclusaoBT(request.body.idTranca, request.body.idBicicleta, request.body.idFuncionario);
 
         //fechar tranca
-        trancar(indiceTranca, bicicleta.numero);
+        trancar(indiceTranca, indiceBicicleta);
 
         //mudar status para disponivel
         bicicletaStatus(indiceBicicleta, "DISPONÍVEL");
 
         //enviar email
-        const funcionario = await getFuncionario(idFuncionario);
+        const funcionario = await getFuncionario(request.body.idFuncionario);
         if(funcionario === undefined){
             return reply.status(404).send("Funcionario não encontrado.");
         }
