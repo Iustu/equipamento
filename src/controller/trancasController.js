@@ -13,6 +13,8 @@ const{pegaIndiceTrancaId, pegaIndiceTrancaNumero, retornaTrancas, retornaTrancaI
     pegaIndiceBicicletaId,
     bicicletaStatus
 } = require("../data/bdd");
+const {getFuncionario} = require("../apis/funcionarioApi");
+const {enviarEmail} = require("../apis/enviarEmailApi");
 
 const getTrancas = async (request, reply) => {
     return reply.status(200).send(retornaTrancas());
@@ -223,12 +225,20 @@ const integrarNaRede = async (request,reply) => {
         colocaTrancaTotem(indiceTotem,request.body.numeroTranca);
 
         //registrar dados inclusao
-        registraInclusaoTT(request.body.numeroTranca,request.body.idFuncionario);
+        const dadoInclusao= registraInclusaoTT(request.body.numeroTranca,request.body.idFuncionario);
 
         //alterar tranca
         trancaStatus(indice,"LIVRE");
 
         //mensagem
+        const funcionario = await getFuncionario(request.body.idFuncionario);
+        if(funcionario === undefined){
+            return reply.status(404).send("Funcionario não encontrado.");
+        }
+        const resultadoEnvioEmail = await enviarEmail(funcionario.email, "Bicicletário System - Inclusao Tranca", "Cadastro realizado."  + JSON.stringify(dadoInclusao));
+        if (resultadoEnvioEmail.status !== 200) {
+            return reply.status(resultadoEnvioEmail.status).send(resultadoEnvioEmail.data + ". Email não enviado");
+        }
 
         reply.status(200);
         reply.send({message: "TRANCA INCLUIDA"});
@@ -258,12 +268,20 @@ const removerDaRede = async (request,reply) => {
         removeTrancaTotem(indiceTotem,request.body.numeroTranca);
 
         //registrar dados exclusão
-        registraExclusaoTT(request.body.numeroTranca,request.body.idFuncionario,request.body.status);
+        const dadoExclusao = registraExclusaoTT(request.body.numeroTranca,request.body.idFuncionario,request.body.status);
 
         //alterar tranca
         trancaStatus(indice,request.body.status);
 
         //mensagem
+        const funcionario = await getFuncionario(request.body.idFuncionario);
+        if(funcionario === undefined){
+            return reply.status(404).send("Funcionario não encontrado.");
+        }
+        const resultadoEnvioEmail = await enviarEmail(funcionario.email, "Bicicletário System - Remover Tranca da rede", "Remoção realizada."  + JSON.stringify(dadoExclusao));
+        if (resultadoEnvioEmail.status !== 200) {
+            return reply.status(resultadoEnvioEmail.status).send(resultadoEnvioEmail.data + ". Email não enviado");
+        }
 
         reply.status(200);
         reply.send({message: "TRANCA REMOVIDA"});

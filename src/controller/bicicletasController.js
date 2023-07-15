@@ -241,9 +241,17 @@ const retirarDaRede = async (request, reply) => {
         bicicletaStatus(indiceBicicleta, request.body.status);
 
         //retirada
-        registraExclusaoBT(request.body.idTranca, request.body.idBicicleta, request.body.idFuncionario, request.body.status);
+        const dadoExclusao = registraExclusaoBT(request.body.idTranca, request.body.idBicicleta, request.body.idFuncionario, request.body.status);
 
         //enviar Mensagem
+        const funcionario = await getFuncionario(request.body.idFuncionario);
+        if(funcionario === undefined){
+            return reply.status(404).send("Funcionario não encontrado.");
+        }
+        const resultadoEnvioEmail = await enviarEmail(funcionario.email, "Bicicletário System - Remover Bicicleta da rede", "Remoção realizada."  + JSON.stringify(dadoExclusao));
+        if (resultadoEnvioEmail.status !== 200) {
+            return reply.status(resultadoEnvioEmail.status).send(resultadoEnvioEmail.data + ". Email não enviado");
+        }
 
         reply.status(200);
         reply.send({messagem: "Bicicleta removida!"});
