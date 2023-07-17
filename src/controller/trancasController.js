@@ -181,11 +181,7 @@ const destrancarEndpoint = async(request, reply) => {
             reply.status(404);
             reply.send({message:"Não encontrado"});
         }
-        const indiceBicicleta = pegaIndiceBicicletaId(request.body.idBicicleta)
-        if (indiceBicicleta == -1){
-            reply.status(404);
-            reply.send({message:"Bicicleta não encontrado"});
-        }
+
         destrancar(indiceTranca);
     }
     catch (error){
