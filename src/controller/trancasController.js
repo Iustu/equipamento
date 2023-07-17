@@ -166,6 +166,8 @@ const trancarEndpoint = async(request, reply) => {
         }
 
         trancar(indiceTranca,indiceBicicleta);
+        reply.status(200);
+        reply.send(retornaTrancaIndice(indiceTranca));
     }
     catch (error){
         console.error(error);
@@ -183,6 +185,8 @@ const destrancarEndpoint = async(request, reply) => {
         }
 
         destrancar(indiceTranca);
+        reply.status(200);
+        reply.send(retornaTrancaIndice(indiceTranca));
     }
     catch (error){
         console.error(error);
