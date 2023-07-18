@@ -1,12 +1,15 @@
 //
 //Bicicletas
 //
-let bicicletas = [{id: 1,
+let bicicletas = [
+    {id: 1,
     marca: "Caloi",
     modelo: "Caloteira",
     numero: 2000,
     ano: 2020,
-    status: "NOVA"},];
+    status: "NOVA"},
+    {id: 2,marca: "Caloi", modelo: "Caloteira", numero: 2, ano: 2021, status: "DISPONIVEL"},
+];
 
 function retornaBicicletas(){
     return bicicletas;
@@ -78,13 +81,16 @@ function pegaIndiceBicicletaNumero(numero) {
 //
 //Trancas
 //
-let trancas = [{id: 1,
+let trancas = [
+    {id: 1,
     localizacao: "Rua da tranca",
     modelo: "Tranca bem firme",
     numero: 2000,
     anoFabricacao: 2019,
     bicicleta:0,
-    status: "NOVA"},];
+    status: "NOVA"},
+    {id: 1, localizacao: "Rua da tranca", modelo: "Tranca bem firme", numero: 2, anoFabricacao: 2019, bicicleta:2, status: "OCUPADA"},
+];
 
 function retornaTrancas(){
     return trancas;
@@ -172,10 +178,13 @@ function pegaIndiceTrancaNumero(numero) {
 //
 //Totem
 //
-let totens = [{id: 1,
+let totens = [
+    {id: 1,
     localizacao: "Teste",
     descricao: "Teste",
-    trancas: []},];
+    trancas: []},
+    {id: 1, localizacao: "Teste", descricao: "Teste", trancas: [2,]},
+];
 
 function retornaTotens(){
     return totens;
