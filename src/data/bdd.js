@@ -89,7 +89,7 @@ let trancas = [
     anoFabricacao: 2019,
     bicicleta:0,
     status: "NOVA"},
-    {id: 1, localizacao: "Rua da tranca", modelo: "Tranca bem firme", numero: 2, anoFabricacao: 2019, bicicleta:2, status: "OCUPADA"},
+    {id: 2, localizacao: "Rua da tranca", modelo: "Tranca bem firme", numero: 2, anoFabricacao: 2019, bicicleta:2, status: "OCUPADA"},
 ];
 
 function retornaTrancas(){
