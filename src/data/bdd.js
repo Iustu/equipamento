@@ -8,7 +8,7 @@ let bicicletas = [
     numero: 2000,
     ano: 2020,
     status: "NOVA"},
-    {id: 2,marca: "Caloi", modelo: "Caloteira", numero: 2, ano: 2021, status: "DISPONIVEL"},
+    {id: 2,marca: "Caloi", modelo: "Caloteira", numero: 2, ano: 2021, status: "DISPONÍVEL"},
 ];
 
 function retornaBicicletas(){
@@ -183,7 +183,7 @@ let totens = [
     localizacao: "Teste",
     descricao: "Teste",
     trancas: []},
-    {id: 1, localizacao: "Teste", descricao: "Teste", trancas: [2,]},
+    {id: 2, localizacao: "Teste", descricao: "Teste", trancas: [2,]},
 ];
 
 function retornaTotens(){
