@@ -114,7 +114,7 @@ const removerTotemById = async(request, reply) => {
     }
 };
 
-const retornaTranca = async (request,reply) =>{
+const retornaTrancaTotem = async (request,reply) =>{
     try{
         const indice = pegaIndiceTotemId(request.params.id);
 
@@ -134,7 +134,7 @@ const retornaTranca = async (request,reply) =>{
         reply.status(422).send('Dado inválidos');
     }
 }
-const retornaBicicleta = async (request,reply) =>{
+const retornaBicicletaTotem = async (request,reply) =>{
     try{
         const indice = pegaIndiceTotemId(request.params.id);
 
@@ -161,6 +161,6 @@ module.exports = {
     criarTotem,
     atualizarTotem,
     removerTotemById,
-    retornaTranca,
-    retornaBicicleta,
+    retornaTrancaTotem,
+    retornaBicicletaTotem,
 }

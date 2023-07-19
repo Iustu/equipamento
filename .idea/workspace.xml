@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a4b7ab1-fe31-47f9-931b-db6da5494ce9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/bicicletasController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/bicicletasController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/totensController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/totensController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/trancasController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/trancasController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/bdd.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/bdd.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/bicicletasRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/bicicletasRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/totensRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/totensRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/integracao/bicicleta.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integracao/bicicleta.test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +70,7 @@
       <recent name="E:\UNIRIO\6 periodo\PM\equipamento\src\classes" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.GET/">
+  <component name="RunManager" selected="Jest.integra.Should return 200 and integrate">
     <configuration name="GET/" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -113,25 +120,26 @@
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Testa o resgitro da inserção de bicicleta em tranca" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="integra.Should return 200 and integrate" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/tests/unidade/bdd.test.js" />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/tests/integracao/bicicleta.test.js" />
       <test-names>
-        <test-name value="Testa o resgitro da inserção de bicicleta em tranca" />
+        <test-name value="integra" />
+        <test-name value="Should return 200 and integrate" />
       </test-names>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.integra.Should return 200 and integrate" />
         <item itemvalue="Jest.GET/" />
         <item itemvalue="Jest.Testa as validacoes de vazio empty.bicicleta" />
         <item itemvalue="Jest.Testa a comparacao de de exclusao BT" />
         <item itemvalue="Jest.Testa o resgitro da exclusao de bicicleta em tranca" />
-        <item itemvalue="Jest.Testa o resgitro da inserção de bicicleta em tranca" />
       </list>
     </recent_temporary>
   </component>
@@ -168,6 +176,12 @@
       <workItem from="1689427458027" duration="1251000" />
       <workItem from="1689554642025" duration="1165000" />
       <workItem from="1689710366418" duration="671000" />
+      <workItem from="1689766635669" duration="4175000" />
+      <workItem from="1689794236979" duration="14000" />
+      <workItem from="1689794296365" duration="3000" />
+      <workItem from="1689794311017" duration="7000" />
+      <workItem from="1689794379962" duration="241000" />
+      <workItem from="1689794634623" duration="1431000" />
     </task>
     <servers />
   </component>

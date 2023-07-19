@@ -36,7 +36,6 @@ describe('get/', () => {
                 marca: "caloi",
                 modelo: "Caloteira",
                 ano: "2025",
-                status: "nova",
                 numero: "1234"
             }
         });
@@ -50,11 +49,6 @@ describe('get/', () => {
         });
 
         expect(JSON.parse(response.body).length >= 1 ).toBe(true);
-
-        await app.inject({
-            method:'delete',
-            url: `bicicleta/${parsedPost.bicicleta.id}`,
-        });
     });
 });
 
@@ -70,7 +64,6 @@ describe('get/id', () => {
                 marca: "caloi",
                 modelo: "Caloteira",
                 ano: "2025",
-                status: "nova",
                 numero: "1234"
             }
         })
@@ -88,15 +81,11 @@ describe('get/id', () => {
                 marca: "caloi",
                 modelo: "Caloteira",
                 ano: "2025",
-                status: "nova",
+                status: "NOVA",
                 numero: "1234"
             }
         );
 
-        await app.inject({
-            method:'delete',
-            url: `bicicleta/${parsedPost.bicicleta.id}`,
-        })
     });
 
     test('Should return 404 due to miss', async () => {
@@ -164,10 +153,6 @@ describe('get/id', () => {
          expect(parsedResponse2.length>parsedResponse1.length).toBe(true);
          expect(parsedResponse3.bicicleta).toStrictEqual(parsedPost.bicicleta);
 
-         await app.inject({
-             method:'delete',
-             url: `bicicleta/${parsedPost.bicicleta.id}`,
-         })
      });
      test('Should return 422 due to null', async () => {
          const app = build();
@@ -178,7 +163,6 @@ describe('get/id', () => {
              body:{
                  modelo: "Caloteira",
                  ano: "2025",
-                 status: "nova",
                  numero: "1234"
              }
          })
@@ -198,7 +182,6 @@ describe('get/id', () => {
                  marca: "",
                  modelo: "Caloteira",
                  ano: "2025",
-                 status: "nova",
                  numero: "1234"
              }
          })
@@ -210,7 +193,7 @@ describe('get/id', () => {
  });
 
 describe("PUT /id", () => {
-    test('Should return 200 and delete the data correctly', async () => {
+    test('Should return 200 and change the data correctly', async () => {
         const app = build();
 
         const post = await app.inject({
@@ -220,7 +203,6 @@ describe("PUT /id", () => {
                 marca: "caloi",
                 modelo: "Caloteira",
                 ano: "2025",
-                status: "nova",
                 numero: "1234"
             }
         })
@@ -254,11 +236,6 @@ describe("PUT /id", () => {
         expect(put.statusCode).toBe(200);
         expect(parsedResponse1.bicicleta != parsedResponse.bicicleta).toBe(true);
         expect(parsedResponse.bicicleta).toStrictEqual(parsedPut.bicicleta);
-
-        await app.inject({
-        method:'delete',
-        url: `bicicleta/${parsedPost.bicicleta.id}`,
-        })
     });
     test('Should return 422 due to null', async () => {
         const app = build();
@@ -290,11 +267,6 @@ describe("PUT /id", () => {
 
         expect(put.statusCode).toBe(422);
         expect(parsedPut.message).toBe("Dados inválidos (Null)");
-        await app.inject({
-            method:'delete',
-            url: `bicicleta/${parsedPost.bicicleta.id}`,
-        })
-
     });
     test('Should return 422 due to empty', async () => {
         const app = build();
@@ -327,26 +299,9 @@ describe("PUT /id", () => {
 
         expect(put.statusCode).toBe(422);
         expect(parsedPut.message).toBe("Dados inválidos (Empty)");
-        await app.inject({
-            method:'delete',
-            url: `bicicleta/${parsedPost.bicicleta.id}`,
-        })
     });
     test('Should return 404', async () => {
         const app = build();
-
-        const post = await app.inject({
-            method:'POST',
-            url: '/bicicleta',
-            body:{
-                marca:"Caloi",
-                modelo: "Caloteira",
-                ano: "2025",
-                status: "nova",
-                numero: "1234"
-            }
-        })
-        const parsedPost = JSON.parse(post.body);
 
         const put = await app.inject({
             method:'PUT',
@@ -363,11 +318,57 @@ describe("PUT /id", () => {
 
         expect(put.statusCode).toBe(404);
         expect(parsedPut.message).toBe("Não encontrado");
+    });
+});
+
+//teste atualizar status
+describe("PUT /id/status/acao", () => {
+    test('Should return 200 and change the data correctly', async () => {
+        const app = build();
+
+        const post = await app.inject({
+            method:'POST',
+            url: '/bicicleta',
+            body:{
+                marca: "caloi",
+                modelo: "Caloteira",
+                ano: "2025",
+                numero: "1234"
+            }
+        })
+        const parsedPost = JSON.parse(post.body);
+
+        const put = await app.inject({
+            method:'PUT',
+            url: `/bicicleta/${parsedPost.bicicleta.id}/status/APOSENTADA`
+        })
+
+        const response = await app.inject({
+            method: 'GET',
+            url: `/bicicleta/${parsedPost.bicicleta.id}`
+        });
+        const parsedResponse = JSON.parse(response.body);
+
+        expect(put.statusCode).toBe(200);
+        expect(parsedResponse.bicicleta.status).toStrictEqual("APOSENTADA");
+
         await app.inject({
             method:'delete',
             url: `bicicleta/${parsedPost.bicicleta.id}`,
         })
+    });
 
+    test('Should return 404', async () => {
+        const app = build();
+
+        const put = await app.inject({
+            method:'PUT',
+            url: `/bicicleta/0/status/EM_REPARO`
+        })
+        const parsedPut = JSON.parse(put.body);
+
+        expect(put.statusCode).toBe(404);
+        expect(parsedPut.message).toBe("Não encontrado");
     });
 });
 
@@ -384,11 +385,15 @@ describe("Delete /id", ()=>{
                 marca:"Caloi",
                 modelo: "Caloteira",
                 ano: "2025",
-                status: "nova",
                 numero: "1234"
             }
         })
         const parsedPost = JSON.parse(post.body);
+
+        const put = await app.inject({
+            method:'PUT',
+            url: `/bicicleta/${parsedPost.bicicleta.id}/status/APOSENTADA`
+        })
 
         const response1 = await app.inject({
             method: 'GET',
@@ -426,6 +431,70 @@ describe("Delete /id", ()=>{
         })
 
         expect(deletE.statusCode).toBe(404);
+    });
+    test("Should not delete a non aposentada",async ()=>{
+        const app = build();
+        const deletE = await app.inject({
+            method:'delete',
+            url: `bicicleta/1`,
+        })
+        const parsedDelete = JSON.parse(deletE.body);
 
+        expect(deletE.statusCode).toBe(422);
+        expect(parsedDelete.message).toBe("SO DELETA APOSENTADA");
     });
 });
+
+//testa integração
+describe("integra", ()=>{
+    test("Should return 200 and integrate",async ()=>{
+        const app = build();
+
+        const integraTranca = await app.inject({
+            method:'POST',
+            url: '/tranca/integrarNaRede',
+            body:{
+                idTranca:"1",
+                idFuncionario:"b57a9ded-dd1e-44ba-8c10-d231efb70ad1",
+                idTotem: "1",
+            }
+        })
+        console.log(integraTranca.body);
+
+        const integraBicicleta = await app.inject({
+            method:'POST',
+            url: '/bicicleta/integrarNaRede',
+            body:{
+                idBicicleta:"1",
+                idFuncionario: "b57a9ded-dd1e-44ba-8c10-d231efb70ad1",
+                idTranca: "1",
+            }
+        })
+        const parsedIntegracao = JSON.parse(integraBicicleta.body);
+
+        expect(parsedIntegracao.message).toBe("Bicicleta inserida com sucesso");
+    });
+    test("Should return 404 and remove Nothing",async ()=>{
+        const app = build();
+        const deletE = await app.inject({
+            method:'delete',
+            url: `bicicleta/0`,
+        })
+
+        expect(deletE.statusCode).toBe(404);
+    });
+    test("Should not delete a non aposentada",async ()=>{
+        const app = build();
+        const deletE = await app.inject({
+            method:'delete',
+            url: `bicicleta/1`,
+        })
+        const parsedDelete = JSON.parse(deletE.body);
+
+        expect(deletE.statusCode).toBe(422);
+        expect(parsedDelete.message).toBe("SO DELETA APOSENTADA");
+    });
+});
+
+
+

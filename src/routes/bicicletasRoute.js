@@ -11,7 +11,7 @@ const routesBicicleta = async (fastify) => {
     fastify.put('/bicicleta/:id', bicicletaController.atualizarBicicleta);
     fastify.post('/bicicleta/integrarNaRede',bicicletaController.integrarNaRede);
     fastify.post('/bicicleta/retirarDaRede',bicicletaController.retirarDaRede);
-    fastify.post('/bicicleta/:id/status/:acao',bicicletaController.atualizarBicicletaStatus);
+    fastify.put('/bicicleta/:id/status/:acao',bicicletaController.atualizarBicicletaStatus);
 }
 
 module.exports = routesBicicleta;

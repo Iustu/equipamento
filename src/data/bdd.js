@@ -319,12 +319,12 @@ function registraInclusaoTT(numeroTranca, idFuncionario){
 
 //Exclusao
 let exclusaoTrancaTotem = [];
-function registraExclusaoTT(numeroTranca, idFuncionario,acaoRetirada){
+function registraExclusaoTT(idTranca, idFuncionario,acaoRetirada){
     const newId = exclusaoTrancaTotem.length+1;
     const exclusao = {
         id: newId,
         dataHora: Date(),
-        numeroTranca: numeroTranca,
+        idTranca: numeroTranca,
         idFuncionario: idFuncionario,
         acaoRetirada: acaoRetirada,
     };
@@ -336,7 +336,7 @@ function comparaExclusaoTT(idFuncionario,numeroTranca){
 
     for (let i = len-1; i >= 0; i--) {
 
-        if (exclusaoTrancaTotem[i].numeroTranca == numeroTranca && exclusaoTrancaTotem[i].idFuncionario==idFuncionario) {
+        if (exclusaoTrancaTotem[i].idTranca == numeroTranca && exclusaoTrancaTotem[i].idFuncionario==idFuncionario) {
             return true;
         }
     }

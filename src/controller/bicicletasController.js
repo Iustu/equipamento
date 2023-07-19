@@ -2,7 +2,6 @@ const {passaNullBicicleta, passaEmptyBicicleta} = require("../utils/validacoes")
 const{pegaIndiceBicicletaId, retornaBicicletas,retornaBicicletaIndice,colocaBicicleta,atualizaBicicleta,deletaBicicleta,pegaIndiceTrancaId,retornaTrancaIndice,trancar,destrancar,bicicletaStatus,registraExclusaoBT,registraInclusaoBT,
     comparaExclusaoBT
 } = require("../data/bdd");
-const {retornaBicicleta} = require("./totensController");
 const {enviarEmail} = require("../apis/enviarEmailApi");
 const {getFuncionario} = require("../apis/funcionarioApi");
 
@@ -125,10 +124,10 @@ const removerBicicletaById = async(request, reply) => {
             reply.send({message: "Não encontrado"});
             return;
         }
-        const bicicleta = retornaBicicleta(indice);
+        const bicicleta = retornaBicicletaIndice(indice);
         if (bicicleta.status!="APOSENTADA"){
             reply.status(422);
-            reply.status({message: "SO DELETA APOSENTADA"});
+            reply.send({message: "SO DELETA APOSENTADA"});
             return;
         }
 

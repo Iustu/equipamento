@@ -203,7 +203,7 @@ const integrarNaRede = async (request,reply) => {
             return;
         }
 
-        let indice = pegaIndiceTrancaNumero(request.body.numeroTranca);
+        let indice = pegaIndiceTrancaId(request.body.idTranca);
         if (indice == -1){
             reply.status(404);
             reply.send({message:"Não encontrado"});
@@ -213,7 +213,7 @@ const integrarNaRede = async (request,reply) => {
         let teste = tranca.status;
         //REPARO
         if (teste=="EM_REPARO"){
-            if (!comparaExclusaoTT(request.body.idFuncionario,request.body.numeroTranca)){
+            if (!comparaExclusaoTT(request.body.idFuncionario,request.body.idTranca)){
                 reply.status(422);
                 reply.send({message:"QUEM TIRA BOTA"});
                 return;
@@ -257,7 +257,7 @@ const removerDaRede = async (request,reply) => {
             return;
         }
 
-        let indice = pegaIndiceTrancaNumero(request.body.numeroTranca);
+        let indice = pegaIndiceTrancaId(request.body.idTranca);
         if (indice == -1){
             reply.status(404);
             reply.send({message:"Não encontrado"});
@@ -265,10 +265,10 @@ const removerDaRede = async (request,reply) => {
         }
         //REPARO
 
-        removeTrancaTotem(indiceTotem,request.body.numeroTranca);
+        removeTrancaTotem(indiceTotem,request.body.idTranca);
 
         //registrar dados exclusão
-        const dadoExclusao = registraExclusaoTT(request.body.numeroTranca,request.body.idFuncionario,request.body.status);
+        const dadoExclusao = registraExclusaoTT(request.body.numeroId,request.body.idFuncionario,request.body.status);
 
         //alterar tranca
         trancaStatus(indice,request.body.status);
