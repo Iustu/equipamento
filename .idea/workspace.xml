@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a4b7ab1-fe31-47f9-931b-db6da5494ce9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/apis/enviarEmailApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/enviarEmailApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apis/funcionarioApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/funcionarioApi.js" afterDir="false" />
-    </list>
+    <list default="true" id="8a4b7ab1-fe31-47f9-931b-db6da5494ce9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -177,7 +174,7 @@
       <workItem from="1689794311017" duration="7000" />
       <workItem from="1689794379962" duration="241000" />
       <workItem from="1689794634623" duration="3409000" />
-      <workItem from="1689849240128" duration="11844000" />
+      <workItem from="1689849240128" duration="12276000" />
     </task>
     <servers />
   </component>
