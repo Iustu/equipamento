@@ -5,19 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a4b7ab1-fe31-47f9-931b-db6da5494ce9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/jest.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apis/enviarEmailApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/enviarEmailApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apis/funcionarioApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/funcionarioApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/bicicletasController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/bicicletasController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/trancasController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/trancasController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/bdd.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/bdd.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/trancasRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/trancasRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/integracao/bicicleta.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integracao/bicicleta.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/integracao/totem.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integracao/totem.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/integracao/tranca.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integracao/tranca.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unidade/bdd.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unidade/bdd.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unidade/validacoes.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unidade/validacoes.test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,8 +66,20 @@
       <recent name="E:\UNIRIO\6 periodo\PM\equipamento\src\classes" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.integra.Should return 422 due to quem tirou nao botou">
-    <configuration name="PUT /id.Should return 200 and update the data correctly" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Jest.integra.Should return 404 due to funcionario n existe">
+    <configuration name="PUT /id/status/acao" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/tests/integracao/tranca.test.js" />
+      <test-names>
+        <test-name value="PUT /id/status/acao" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="PUT /id/status/acao.Should return 200 and change the data correctly" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$" />
@@ -84,12 +87,24 @@
       <scope-kind value="TEST" />
       <test-file value="$PROJECT_DIR$/tests/integracao/tranca.test.js" />
       <test-names>
-        <test-name value="PUT /id" />
-        <test-name value="Should return 200 and update the data correctly" />
+        <test-name value="PUT /id/status/acao" />
+        <test-name value="Should return 200 and change the data correctly" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="PUT /id.Should return 422 due to empty" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="PUT /id/trancar" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/tests/integracao/tranca.test.js" />
+      <test-names>
+        <test-name value="PUT /id/trancar" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="PUT /id/trancar.Should return 404 due to bicicleta" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$" />
@@ -97,57 +112,31 @@
       <scope-kind value="TEST" />
       <test-file value="$PROJECT_DIR$/tests/integracao/tranca.test.js" />
       <test-names>
-        <test-name value="PUT /id" />
-        <test-name value="Should return 422 due to empty" />
+        <test-name value="PUT /id/trancar" />
+        <test-name value="Should return 404 due to bicicleta" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="PUT /id.Should return 422 due to null" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="integra.Should return 404 due to funcionario n existe" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="TEST" />
       <test-file value="$PROJECT_DIR$/tests/integracao/tranca.test.js" />
-      <test-names>
-        <test-name value="PUT /id" />
-        <test-name value="Should return 422 due to null" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="integra.Should return 422 due to quem tirou nao botou" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/tests/integracao/bicicleta.test.js" />
       <test-names>
         <test-name value="integra" />
-        <test-name value="Should return 422 due to quem tirou nao botou" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="integra.Should return 422 due to tranca n existe" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/tests/integracao/bicicleta.test.js" />
-      <test-names>
-        <test-name value="integra" />
-        <test-name value="Should return 422 due to tranca n existe" />
+        <test-name value="Should return 404 due to funcionario n existe" />
       </test-names>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Jest.integra.Should return 422 due to quem tirou nao botou" />
-        <item itemvalue="Jest.integra.Should return 422 due to tranca n existe" />
-        <item itemvalue="Jest.PUT /id.Should return 422 due to empty" />
-        <item itemvalue="Jest.PUT /id.Should return 422 due to null" />
-        <item itemvalue="Jest.PUT /id.Should return 200 and update the data correctly" />
+        <item itemvalue="Jest.integra.Should return 404 due to funcionario n existe" />
+        <item itemvalue="Jest.PUT /id/trancar" />
+        <item itemvalue="Jest.PUT /id/trancar.Should return 404 due to bicicleta" />
+        <item itemvalue="Jest.PUT /id/status/acao" />
+        <item itemvalue="Jest.PUT /id/status/acao.Should return 200 and change the data correctly" />
       </list>
     </recent_temporary>
   </component>
@@ -190,7 +179,7 @@
       <workItem from="1689794311017" duration="7000" />
       <workItem from="1689794379962" duration="241000" />
       <workItem from="1689794634623" duration="3409000" />
-      <workItem from="1689849240128" duration="9288000" />
+      <workItem from="1689849240128" duration="11542000" />
     </task>
     <servers />
   </component>

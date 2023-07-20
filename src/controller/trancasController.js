@@ -156,11 +156,13 @@ const trancarEndpoint = async(request, reply) => {
         if (indiceTranca == -1){
             reply.status(404);
             reply.send({message:"Não encontrado"});
+            return;
         }
         const indiceBicicleta = pegaIndiceBicicletaId(request.body.idBicicleta)
         if (indiceBicicleta == -1){
             reply.status(404);
-            reply.send({message:"Bicicleta não encontrado"});
+            reply.send({message:"Bicicleta não encontrada"});
+            return;
         }
 
         trancar(indiceTranca,indiceBicicleta);
@@ -180,11 +182,13 @@ const destrancarEndpoint = async(request, reply) => {
         if (indiceTranca == -1){
             reply.status(404);
             reply.send({message:"Não encontrado"});
+            return;
         }
 
         destrancar(indiceTranca);
         reply.status(200);
         reply.send(retornaTrancaIndice(indiceTranca));
+        return;
     }
     catch (error){
         console.error(error);
