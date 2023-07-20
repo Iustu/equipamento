@@ -132,7 +132,7 @@ describe("Testa recuperação de um indice com id",()=>{
    });
 
    test ("Should an indice of bike",()=>{
-      expect(pegaIndiceBicicletaId(novaBike.id)).toBe(0);
+      expect(pegaIndiceBicicletaId(novaBike.id)).toBe(2);
    });
    test ("Should return -1",()=>{
       expect(pegaIndiceBicicletaId(10000)).toBe(-1);
@@ -286,10 +286,9 @@ describe("Testa a alteracao de destrancado para trancado",()=>{
    });
 
    test ("Should actualize an tranca in array",()=>{
-      trancar(tranca.id-1,1234);
+      trancar(tranca.id-1,0);
 
-
-      expect(tranca.status == "OCUPADA" && tranca.bicicleta==1234).toBe(true);
+      expect(tranca.status == "OCUPADA" && tranca.bicicleta==2000).toBe(true);
    });
 });
 describe("Testa a alteracao de trancado para destrancado",()=>{
@@ -318,8 +317,8 @@ describe("Testa recuperação de um indice com id",()=>{
       deletaTranca(tranca.id-1);
    });
 
-   test ("Should an indice of bike",()=>{
-      expect(pegaIndiceTrancaId(tranca.id)).toBe(0);
+   test ("Should an indice of a tranca",()=>{
+      expect(pegaIndiceTrancaId(tranca.id)).toBe(2);
    });
    test ("Should return -1",()=>{
       expect(pegaIndiceTrancaId(10000)).toBe(-1);
@@ -438,7 +437,7 @@ describe("Testa remoção de um elemento no array de Totem",()=>{
    });
 });
 
-describe("Testa recuperação de um indice com id",()=>{
+describe("Testa recuperação de um indice de totem com id",()=>{
    let totem;
 
    beforeAll(()=>{
@@ -448,8 +447,8 @@ describe("Testa recuperação de um indice com id",()=>{
       deletaTotem(totem.id-1);
    });
 
-   test ("Should an indice of bike",()=>{
-      expect(pegaIndiceTotemId(totem.id)).toBe(0);
+   test ("Should an indice of totem",()=>{
+      expect(pegaIndiceTotemId(totem.id)).toBe(2);
    });
    test ("Should return -1",()=>{
       expect(pegaIndiceTotemId(10000)).toBe(-1);

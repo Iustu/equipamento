@@ -143,7 +143,6 @@ function deletaTranca(indice){
 function trancar(indiceTranca,indiceBicicleta){
     let trancaSelecionada = trancas[indiceTranca];
     let bicicletaSelecionada = bicicletas[indiceBicicleta];
-    console.log("BDD LOG",bicicletaSelecionada);
     trancaSelecionada.status = "OCUPADA";
     trancaSelecionada.bicicleta = bicicletaSelecionada.numero;
     bicicletaSelecionada.status = "LIVRE"
@@ -324,7 +323,7 @@ function registraExclusaoTT(idTranca, idFuncionario,acaoRetirada){
     const exclusao = {
         id: newId,
         dataHora: Date(),
-        idTranca: numeroTranca,
+        idTranca: idTranca,
         idFuncionario: idFuncionario,
         acaoRetirada: acaoRetirada,
     };

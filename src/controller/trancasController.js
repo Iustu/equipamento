@@ -1,17 +1,15 @@
 const {passaNullTranca, passaEmptyTranca} = require("../utils/validacoes");
-const{pegaIndiceTrancaId, pegaIndiceTrancaNumero, retornaTrancas, retornaTrancaIndice, colocaTranca, atualizaTranca, deletaTranca,
+const{pegaIndiceTrancaId, retornaTrancas, retornaTrancaIndice, colocaTranca, atualizaTranca, deletaTranca,
     trancar,
     destrancar,
     registraInclusaoTT,
     trancaStatus,
     registraExclusaoTT,
     pegaIndiceTotemId,
-    retornaTotemIndice,
     colocaTrancaTotem,
     removeTrancaTotem,
     comparaExclusaoTT,
     pegaIndiceBicicletaId,
-    bicicletaStatus
 } = require("../data/bdd");
 const {getFuncionario} = require("../apis/funcionarioApi");
 const {enviarEmail} = require("../apis/enviarEmailApi");
@@ -210,6 +208,7 @@ const integrarNaRede = async (request,reply) => {
             return;
         }
         let tranca = retornaTrancaIndice(indice);
+
         let teste = tranca.status;
         //REPARO
         if (teste=="EM_REPARO"){
@@ -222,10 +221,10 @@ const integrarNaRede = async (request,reply) => {
 
 
         //atrelar tranca no totem;
-        colocaTrancaTotem(indiceTotem,request.body.numeroTranca);
+        colocaTrancaTotem(indiceTotem,tranca.numero);
 
         //registrar dados inclusao
-        const dadoInclusao= registraInclusaoTT(request.body.numeroTranca,request.body.idFuncionario);
+        const dadoInclusao= registraInclusaoTT(tranca.numero,request.body.idFuncionario);
 
         //alterar tranca
         trancaStatus(indice,"LIVRE");
@@ -263,12 +262,13 @@ const removerDaRede = async (request,reply) => {
             reply.send({message:"Não encontrado"});
             return;
         }
+        let tranca = retornaTrancaIndice(indice);
         //REPARO
 
-        removeTrancaTotem(indiceTotem,request.body.idTranca);
+        removeTrancaTotem(indiceTotem,tranca.numero);
 
         //registrar dados exclusão
-        const dadoExclusao = registraExclusaoTT(request.body.numeroId,request.body.idFuncionario,request.body.status);
+        const dadoExclusao = registraExclusaoTT(tranca.numero,request.body.idFuncionario,request.body.status);
 
         //alterar tranca
         trancaStatus(indice,request.body.status);

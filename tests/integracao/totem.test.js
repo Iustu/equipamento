@@ -81,6 +81,7 @@ describe('get/id', () => {
                 id: parsedPost.totem.id,
                 localizacao: "endereco teste",
                 descricao:"Tudo descrevido",
+                trancas: [],
             }
         );
 

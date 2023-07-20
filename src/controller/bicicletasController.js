@@ -148,7 +148,7 @@ const integrarNaRede = async (request, reply) => {
         let indiceBicicleta = pegaIndiceBicicletaId(request.body.idBicicleta);
         if (indiceBicicleta == -1) {
             reply.status(422);
-            reply.send({message: "Numero bicicleta inválido"});
+            reply.send({message: "Id bicicleta invalido"});
             return;
         }
 
@@ -157,7 +157,6 @@ const integrarNaRede = async (request, reply) => {
         if (bicicleta.status !== "NOVA" && bicicleta.status !== "EM_REPARO") {
             reply.status(422);
             reply.send({message: "Estado da bicicleta noggers."});
-            console.log("LOG DE VALIDACAO INTEGRAÇÃO bicicleta",bicicleta);
             return;
         }
         if (bicicleta.status == "EM_REPARO") {
@@ -172,7 +171,7 @@ const integrarNaRede = async (request, reply) => {
         let indiceTranca = pegaIndiceTrancaId(request.body.idTranca);
         if (indiceTranca == -1) {
             reply.status(422);
-            reply.send({message: "Numero tranca inválido"});
+            reply.send({message: "Id tranca invalido"});
             return;
         }
         let tranca = retornaTrancaIndice(indiceTranca);

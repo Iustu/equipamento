@@ -11,7 +11,7 @@ const routesTranca = async (fastify) => {
     fastify.put('/tranca/:id', trancaController.atualizarTranca);
     fastify.post('/tranca/:id/trancar', trancaController.trancarEndpoint);
     fastify.post('/tranca/:id/destrancar', trancaController.destrancarEndpoint);
-    fastify.post('/tranca/:id/status/:acao',trancaController.atualizarTrancaStatus);
+    fastify.put('/tranca/:id/status/:acao',trancaController.atualizarTrancaStatus);
     fastify.post('/tranca/integrarNaRede', trancaController.integrarNaRede);
     fastify.post('/tranca/removerDaRede', trancaController.removerDaRede);
 

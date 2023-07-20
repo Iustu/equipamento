@@ -459,7 +459,116 @@ describe("integra", ()=>{
                 idTotem: "1",
             }
         })
-        console.log(integraTranca.body);
+
+        const integraBicicleta = await app.inject({
+            method:'POST',
+            url: '/bicicleta/integrarNaRede',
+            body:{
+                idBicicleta:"1",
+                idFuncionario: "b57a9ded-dd1e-44ba-8c10-d231efb70ad1",
+                idTranca: "1",
+            }
+        })
+        const parsedIntegracao = JSON.parse(integraBicicleta.body);
+        expect(integraBicicleta.statusCode).toBe(200);
+        expect(parsedIntegracao.message).toBe("Bicicleta inserida com sucesso");
+
+        await app.inject({
+            method:'POST',
+            url: '/bicicleta/retirarDaRede',
+            body:{
+                idBicicleta:"1",
+                idFuncionario: "b57a9ded-dd1e-44ba-8c10-d231efb70ad1",
+                idTranca: "1",
+                status: "EM_REPARO"
+            }
+        })
+    });
+    test("Should return 422 due to bicicleta n existe",async ()=>{
+        const app = build();
+
+        const integraTranca = await app.inject({
+            method:'POST',
+            url: '/tranca/integrarNaRede',
+            body:{
+                idTranca:"1",
+                idFuncionario:"b57a9ded-dd1e-44ba-8c10-d231efb70ad1",
+                idTotem: "1",
+            }
+        })
+
+        const integraBicicleta = await app.inject({
+            method:'POST',
+            url: '/bicicleta/integrarNaRede',
+            body:{
+                idBicicleta:"10000",
+                idFuncionario: "b57a9ded-dd1e-44ba-8c10-d231efb70ad1",
+                idTranca: "1",
+            }
+        })
+        const parsedIntegracao = JSON.parse(integraBicicleta.body);
+        expect(integraBicicleta.statusCode).toBe(422);
+        expect(parsedIntegracao.message).toBe("Id bicicleta invalido");
+
+    });
+    test("Should return 422 due to tranca n existe",async ()=>{
+        const app = build();
+
+        const integraTranca = await app.inject({
+            method:'POST',
+            url: '/tranca/integrarNaRede',
+            body:{
+                idTranca:"1",
+                idFuncionario:"b57a9ded-dd1e-44ba-8c10-d231efb70ad1",
+                idTotem: "1",
+            }
+        })
+
+        const integraBicicleta = await app.inject({
+            method:'POST',
+            url: '/bicicleta/integrarNaRede',
+            body:{
+                idBicicleta:"1",
+                idFuncionario: "b57a9ded-dd1e-44ba-8c10-d231efb70ad1",
+                idTranca: "100000",
+            }
+        })
+        const parsedIntegracao = JSON.parse(integraBicicleta.body);
+        expect(integraBicicleta.statusCode).toBe(422);
+        expect(parsedIntegracao.message).toBe("Id tranca invalido");
+    });
+    test("Should return 422 due to funcionario n existe",async ()=>{
+        const app = build();
+
+        await app.inject({
+            method:'POST',
+            url: '/tranca/integrarNaRede',
+            body:{
+                idTranca:"1",
+                idFuncionario:"b57a9ded-dd1e-44ba-8c10-d231efb70ad1",
+                idTotem: "1",
+            }
+        })
+
+        const integraBicicleta = await app.inject({
+            method:'POST',
+            url: '/bicicleta/integrarNaRede',
+            body:{
+                idBicicleta:"1",
+                idFuncionario: "1",
+                idTranca: "1",
+            }
+        })
+
+        expect(integraBicicleta.statusCode).toBe(422);
+    });
+    test("Should return 422 due to tranca ruim",async ()=>{
+        const app = build();
+
+        await app.inject({
+            method:'PUT',
+            url: "/tranca/1/status/APOSENTADA"
+        })
 
         const integraBicicleta = await app.inject({
             method:'POST',
@@ -472,28 +581,85 @@ describe("integra", ()=>{
         })
         const parsedIntegracao = JSON.parse(integraBicicleta.body);
 
-        expect(parsedIntegracao.message).toBe("Bicicleta inserida com sucesso");
+        expect(integraBicicleta.statusCode).toBe(422);
+        expect(parsedIntegracao.message).toBe("Estado tranca noggers");
     });
-    test("Should return 404 and remove Nothing",async ()=>{
+    test("Should return 422 due to bicicleta ruim",async ()=>{
         const app = build();
-        const deletE = await app.inject({
-            method:'delete',
-            url: `bicicleta/0`,
+
+        const integraTranca = await app.inject({
+            method:'POST',
+            url: '/tranca/integrarNaRede',
+            body:{
+                idTranca:"1",
+                idFuncionario:"b57a9ded-dd1e-44ba-8c10-d231efb70ad1",
+                idTotem: "1",
+            }
         })
 
-        expect(deletE.statusCode).toBe(404);
-    });
-    test("Should not delete a non aposentada",async ()=>{
-        const app = build();
-        const deletE = await app.inject({
-            method:'delete',
-            url: `bicicleta/1`,
+        await app.inject({
+            method:'PUT',
+            url: "/bicicleta/1/status/DISPONIVEL"
         })
-        const parsedDelete = JSON.parse(deletE.body);
 
-        expect(deletE.statusCode).toBe(422);
-        expect(parsedDelete.message).toBe("SO DELETA APOSENTADA");
+        const integraBicicleta = await app.inject({
+            method:'POST',
+            url: '/bicicleta/integrarNaRede',
+            body:{
+                idBicicleta:"1",
+                idFuncionario: "b57a9ded-dd1e-44ba-8c10-d231efb70ad1",
+                idTranca: "1",
+            }
+        })
+        const parsedIntegracao = JSON.parse(integraBicicleta.body);
+
+        expect(integraBicicleta.statusCode).toBe(422);
+        expect(parsedIntegracao.message).toBe("Estado da bicicleta noggers.");
+
+        await app.inject({
+            method:'PUT',
+            url: "/bicicleta/1/status/NOVA"
+        })
     });
+    test("Should return 422 due to quem tirou nao botou",async ()=>{
+        const app = build();
+
+        await app.inject({
+            method:'POST',
+            url: '/bicicleta/integrarNaRede',
+            body:{
+                idBicicleta:"1",
+                idFuncionario: "b57a9ded-dd1e-44ba-8c10-d231efb70ad1",
+                idTranca: "1",
+            }
+        })
+
+        await app.inject({
+            method:'POST',
+            url: '/bicicleta/retirarDaRede',
+            body:{
+                idBicicleta:"1",
+                idFuncionario: "b57a9ded-dd1e-44ba-8c10-d231efb70ad1",
+                idTranca: "1",
+                status:"EM_REPARO",
+            }
+        })
+
+        const integraBicicleta2 = await app.inject({
+            method:'POST',
+            url: '/bicicleta/integrarNaRede',
+            body:{
+                idBicicleta:"1",
+                idFuncionario: "1",
+                idTranca: "1",
+            }
+        })
+        const parsedIntegracao2 = JSON.parse(integraBicicleta2.body);
+
+        expect(integraBicicleta2.statusCode).toBe(422);
+        expect(parsedIntegracao2.message).toBe("QUEM TIRA BOTA");
+    });
+
 });
 
 

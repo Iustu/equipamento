@@ -3,17 +3,17 @@ const {passaEmptyBicicleta, passaEmptyTranca, passaEmptyTotem, passaNullBiciclet
 
 describe ("Testa as validacoes de vazio empty",() => {
     test("bicicleta",() =>{
-        expect(passaEmptyBicicleta("","","")).toBe(false);
+        expect(passaEmptyBicicleta("","","","")).toBe(false);
     })
     test("bicicleta",() =>{
-        expect(passaEmptyBicicleta("teste","teste",2018)).toBe(true);
+        expect(passaEmptyBicicleta("teste","teste",2018,123)).toBe(true);
     })
 
     test("tranca",() =>{
         expect(passaEmptyTranca("","","","")).toBe(false);
     })
     test("tranca",() =>{
-        expect(passaEmptyTranca("teste","teste",2017,1234)).toBe(false);
+        expect(passaEmptyTranca("teste","teste",2017,1234)).toBe(true);
     })
 
     test("totem",() =>{
@@ -29,14 +29,14 @@ describe ("Testa as validacoes de null",() => {
         expect(passaNullBicicleta()).toBe(false);
     })
     test("bicicleta",() =>{
-        expect(passaNullBicicleta("teste","teste",2018)).toBe(true);
+        expect(passaNullBicicleta("teste","teste",2018,1234)).toBe(true);
     })
 
     test("tranca",() =>{
         expect(passaNullTranca()).toBe(false);
     })
     test("tranca",() =>{
-        expect(passaNullTranca("teste","teste",2017,1234)).toBe(false);
+        expect(passaNullTranca("teste","teste",2017,1234)).toBe(true);
     })
 
     test("totem",() =>{

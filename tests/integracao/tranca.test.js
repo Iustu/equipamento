@@ -36,7 +36,6 @@ describe('get/', () => {
                 localizacao: "endereco teste",
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
-                status: "nova",
                 numero: "1234"
             }
         });
@@ -50,6 +49,11 @@ describe('get/', () => {
         });
 
         expect(JSON.parse(response.body).length >= 1 ).toBe(true);
+
+        await app.inject({
+            method:'put',
+            url: `tranca/${parsedPost.tranca.id}/status/APOSENTADA`,
+        })
 
         await app.inject({
             method:'delete',
@@ -70,7 +74,6 @@ describe('get/id', () => {
                 localizacao: "endereco teste",
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
-                status: "nova",
                 numero: "1234"
             }
         })
@@ -88,10 +91,16 @@ describe('get/id', () => {
                 localizacao: "endereco teste",
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
-                status: "nova",
+                status: "NOVA",
+                bicicleta: 0,
                 numero: "1234"
             }
         );
+
+        await app.inject({
+            method:'put',
+            url: `tranca/${parsedPost.tranca.id}/status/APOSENTADA`,
+        })
 
         await app.inject({
             method:'delete',
@@ -142,7 +151,6 @@ describe("POST /", () => {
                 localizacao: "endereco teste",
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
-                status: "nova",
                 numero: "1234"
             }
         })
@@ -165,6 +173,11 @@ describe("POST /", () => {
         expect(parsedResponse3.tranca).toStrictEqual(parsedPost.tranca);
 
         await app.inject({
+            method:'put',
+            url: `tranca/${parsedPost.tranca.id}/status/APOSENTADA`,
+        })
+
+        await app.inject({
             method:'delete',
             url: `tranca/${parsedPost.tranca.id}`,
         })
@@ -178,7 +191,6 @@ describe("POST /", () => {
             body:{
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
-                status: "nova",
                 numero: "1234"
             }
         })
@@ -198,7 +210,6 @@ describe("POST /", () => {
                 localizacao: "",
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
-                status: "nova",
                 numero: "1234"
             }
         })
@@ -221,7 +232,6 @@ describe("PUT /id", () => {
                 localizacao: "endereco teste",
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
-                status: "nova",
                 numero: "1234"
             }
         })
@@ -240,7 +250,8 @@ describe("PUT /id", () => {
                 localizacao: "endereco teste",
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
-                status: "velha",
+                status: "APOSENTADA",
+                bicicleta: "0",
                 numero: "1234"
             }
         })
@@ -271,7 +282,6 @@ describe("PUT /id", () => {
                 localizacao: "endereco teste",
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
-                status: "nova",
                 numero: "1234"
             }
         })
@@ -283,14 +293,19 @@ describe("PUT /id", () => {
             body:{
                 modelo: "trancafirme",
                 anoFabricacao: "2011",
-                status: "nova",
-                numero: "1234"
+                status: "APOSENTADA",
+                numero: "1234",
+                bicicleta: 0
             }
         })
         const parsedPut = JSON.parse(put.body);
 
         expect(put.statusCode).toBe(422);
         expect(parsedPut.message).toBe("Dados inválidos (Null)");
+        await app.inject({
+            method:'put',
+            url: `tranca/${parsedPost.tranca.id}/status/APOSENTADA`,
+        })
         await app.inject({
             method:'delete',
             url: `tranca/${parsedPost.tranca.id}`,
@@ -329,6 +344,10 @@ describe("PUT /id", () => {
         expect(put.statusCode).toBe(422);
         expect(parsedPut.message).toBe("Dados inválidos (Empty)");
         await app.inject({
+            method:'put',
+            url: `tranca/${parsedPost.tranca.id}/status/APOSENTADA`,
+        })
+        await app.inject({
             method:'delete',
             url: `tranca/${parsedPost.tranca.id}`,
         })
@@ -365,6 +384,10 @@ describe("PUT /id", () => {
         expect(put.statusCode).toBe(404);
         expect(parsedPut.message).toBe("Não encontrado");
         await app.inject({
+            method:'put',
+            url: `tranca/${parsedPost.tranca.id}/status/APOSENTADA`,
+        })
+        await app.inject({
             method:'delete',
             url: `tranca/${parsedPost.tranca.id}`,
         })
@@ -397,6 +420,10 @@ describe("Delete /id", ()=>{
         });
         const parsedResponse1 = JSON.parse(response1.body);
 
+        await app.inject({
+            method:'put',
+            url: `tranca/${parsedPost.tranca.id}/status/APOSENTADA`,
+        })
         const deletE = await app.inject({
             method:'delete',
             url: `tranca/${parsedPost.tranca.id}`,
