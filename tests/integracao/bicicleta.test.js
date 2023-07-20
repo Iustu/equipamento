@@ -29,7 +29,7 @@ describe('get/', () => {
     test("Should a populated array size be bigger than 0", async ()=>{
         const app = build();
 
-        const post = await app.inject({
+        await app.inject({
             method:'POST',
             url: '/bicicleta',
             body:{
