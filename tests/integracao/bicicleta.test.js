@@ -40,9 +40,6 @@ describe('get/', () => {
             }
         });
 
-        //Necessário parsear os bodys
-        const parsedPost = JSON.parse(post.body);
-
         const response = await app.inject({
             method: 'GET',
             url: '/bicicleta'
@@ -390,7 +387,7 @@ describe("Delete /id", ()=>{
         })
         const parsedPost = JSON.parse(post.body);
 
-        const put = await app.inject({
+        await app.inject({
             method:'PUT',
             url: `/bicicleta/${parsedPost.bicicleta.id}/status/APOSENTADA`
         })
@@ -450,7 +447,7 @@ describe("integra", ()=>{
     test("Should return 200 and integrate",async ()=>{
         const app = build();
 
-        const integraTranca = await app.inject({
+        await app.inject({
             method:'POST',
             url: '/tranca/integrarNaRede',
             body:{
@@ -487,7 +484,7 @@ describe("integra", ()=>{
     test("Should return 422 due to bicicleta n existe",async ()=>{
         const app = build();
 
-        const integraTranca = await app.inject({
+        await app.inject({
             method:'POST',
             url: '/tranca/integrarNaRede',
             body:{
@@ -514,7 +511,7 @@ describe("integra", ()=>{
     test("Should return 422 due to tranca n existe",async ()=>{
         const app = build();
 
-        const integraTranca = await app.inject({
+        await app.inject({
             method:'POST',
             url: '/tranca/integrarNaRede',
             body:{
@@ -587,7 +584,7 @@ describe("integra", ()=>{
     test("Should return 422 due to bicicleta ruim",async ()=>{
         const app = build();
 
-        const integraTranca = await app.inject({
+        await app.inject({
             method:'POST',
             url: '/tranca/integrarNaRede',
             body:{

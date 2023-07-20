@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a4b7ab1-fe31-47f9-931b-db6da5494ce9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/trancasController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/trancasController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/trancasRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/trancasRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/integracao/tranca.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integracao/tranca.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/apis/enviarEmailApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/enviarEmailApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/apis/funcionarioApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/funcionarioApi.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +177,7 @@
       <workItem from="1689794311017" duration="7000" />
       <workItem from="1689794379962" duration="241000" />
       <workItem from="1689794634623" duration="3409000" />
-      <workItem from="1689849240128" duration="11542000" />
+      <workItem from="1689849240128" duration="11844000" />
     </task>
     <servers />
   </component>
